@@ -1,0 +1,41 @@
+<view class="container" style="padding-top:40rpx;align-items:center;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+    <view class='searchItem'>
+      <text>订单号</text>
+      <input class='searchItemInput' name='orderName' placeholder='请输入您的订单号' value="{{orderName}}" bindinput='getOrderName'></input>
+      <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex}}'>
+        <view wx:for="{{bindSource}}">
+          <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='searchItem' wx:if='{{isShow}}'>
+      <text>组名</text>
+      <input class='searchItemInput' name='groupName' placeholder='请输入您的组名' value="{{groupName}}" bindinput='getGroupName' style='margin-left:60rpx'></input>
+    </view>
+    <view class='button'>
+      <button class='btn' bindtap='search'>查询</button>
+    </view>
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th" style='width:40%'>工序</view>
+        <view class="th" style='width:40%'>员工</view>
+        <view class="th" style='width:20%'>操作</view>
+      </view>
+      <block wx:for="{{records}}" wx:key="{{dispatchID}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td" style='width:40%'>{{item.procedureName}}</view>
+          <view class="td" style='width:40%'>{{item.employee}}</view>
+          <view class="td" style='width:20%'><label data-value='{{item.dispatchID}}' bindtap="delDisPatch">删除</label></view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td" style='width:40%'>{{item.procedureName}}</view>
+          <view class="td" style='width:40%'>{{item.employee}}</view>
+          <view class="td" style='width:20%'><label data-value='{{item.dispatchID}}' bindtap="delDisPatch">删除</label></view>
+        </view>
+      </block>
+    </view>
+    
+  </view>
+</view>

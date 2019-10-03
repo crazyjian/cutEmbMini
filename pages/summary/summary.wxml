@@ -1,0 +1,64 @@
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+  <view class="flex-col">
+    <view class="flex-row" style="justify-content:space-between">
+      <view style="font-weight:bold;">今日生产</view>
+      <view style="font-weight:bold;font-size:30rpx;color:rgb(177, 175, 175)">{{date}}</view>
+    </view>
+    <view class="textView">
+      <view class="flex-row">
+        <view class="flex-item">
+          <view  class="title">扎数</view>
+          <view  class="label">{{dayPackageCount}}</view>
+        </view>
+        <view class="flex-item" bindtap='getpieceworkemptoday'>
+          <view  class="title">件数</view>
+          <view  class="label">{{dayPieceCount}}</view>
+        </view>
+        <view class="flex-item">
+          <view  class="title">工资</view>
+          <view  class="label">{{daySumSalary}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="textView largeTitle" bindtap='getpiecework'>
+      生产查询
+    </view>
+    <!-- <view class="flex-row" style="justify-content:space-between;margin-top:30rpx">
+      <view style="font-weight:bold;">本月生产</view>
+    </view>
+    <view class="textView">
+      <view class="flex-row">
+        <view class="flex-item">
+          <view  class="title">扎数</view>
+          <view  class="label">{{monthPackageCount}}</view>
+        </view>
+        <view class="flex-item" bindtap='getpieceworkempMonth'>
+          <view  class="title">件数</view>
+          <view  class="label">{{monthPieceCount}}</view>
+        </view>
+        <view class="flex-item">
+          <view  class="title">工资</view>
+          <view  class="label">{{monthSumSalary}}</view>
+        </view>
+      </view>
+    </view> -->
+    <view class="flex-row" style="justify-content:space-between;margin-top:30rpx">
+      <view style="font-weight:bold;">其他明细</view>
+    </view>
+    <view class="textView largeTitle" bindtap='getDispatchDetail'>
+      排产明细
+    </view>
+    <view class="textView largeTitle" bindtap='getInspectionDetail'>
+      质检明细
+    </view>
+    <view class="textView largeTitle" bindtap='getSampleinspectionDetail'>
+      抽检明细
+    </view>
+    <view class="textView largeTitle" bindtap='getProcedureDetail'>
+      工序明细
+    </view>
+  </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<view class="navigate-container">
+  <view style="height:{{statusBarHeight}}px"></view>
+  <view class="navigate-bar" style="height:{{titleBarHeight}}px">
+    <view class="navigate-icon">
+      <navigator class="navigator-back" open-type="navigateBack" wx:if="{{!isShowHome}}" />
+      <navigator class="navigator-home" open-type="switchTab" url="/pages/index/index" wx:else />
+    </view>
+    <view class="navigate-title">{{title}}</view>
+    <view class="navigate-icon"></view>
+  </view>
+</view>
+<view class="navigate-line" style="height: {{statusBarHeight + titleBarHeight}}px; width: 100%;"></view>
