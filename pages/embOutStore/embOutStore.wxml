@@ -1,14 +1,13 @@
-<navigate-title title="裁片入库" />
+<navigate-title title="衣胚出库" />
 <view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
   <view class="section">
     <view class='searchItem'>
-      <view class='searchItemImg'>
-        <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
-      </view>
-      <input class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' bindtap='scanStore' disabled="true"></input>  
-      <view class='searchItemImg' wx:if="{{isShow}}">
-        <image src='{{scanPic}}' style='display:inline' mode="aspectFit"></image>
-      </view>  
+      <text>组名</text>
+      <picker style="margin-left:20rpx;width:70%" bindchange="bindPickerChange" value="{{index}}" range="{{groupList}}">
+        <view class="picker">
+          {{groupList[index]}}
+        </view>
+      </picker>
     </view>
     <view class='button' style="margin-bottom: 50rpx">
       <button class='btn' bindtap='scanTailor'>扫描裁片</button>
@@ -25,7 +24,7 @@
       </view>
     </view>
     <view class='button' style="margin-top:100rpx">
-      <button class='btn' bindtap='inStore'>入库</button>
+      <button class='btn' bindtap='outStore'>出库</button>
     </view>
   </view>
 </view>

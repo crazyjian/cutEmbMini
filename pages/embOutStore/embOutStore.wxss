@@ -171,6 +171,11 @@ label {
   margin-bottom: 50rpx;
   margin-top:10rpx;
   display: flex;
+  align-items: center;
+}
+
+text{
+  margin-left:20rpx;
 }
 
 .searchItemImg {

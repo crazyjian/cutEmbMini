@@ -4,50 +4,50 @@
     <view class="title" style="color:#6495ED">裁片超市</view>
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/inStore1.png' mode="aspectFit" bindtap='scanCode'></image>
+        <image class='itemImg' src='../../static/img/inStore1.png' mode="aspectFit" bindtap='cutInStore'></image>
         <text>裁片入库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/outStore1.png' mode="aspectFit" bindtap='dispatch'></image>
+        <image class='itemImg' src='../../static/img/outStore1.png' mode="aspectFit" bindtap='cutOutStore'></image>
         <text>裁片出库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/changeStore.png' mode="aspectFit" bindtap='dispatch'></image>
+        <image class='itemImg' src='../../static/img/changeStore.png' mode="aspectFit" bindtap='cutChangeStore'></image>
         <text>裁片调库</text>
       </view>
     </view>
     <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/status1.png' mode="aspectFit" bindtap='inspection'></image>
+        <image class='itemImg' src='../../static/img/status1.png' mode="aspectFit" bindtap='cutStorageState'></image>
         <text>库存状态</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/singleStore1.png' mode="aspectFit" bindtap='sampleinspection'></image>
+        <image class='itemImg' src='../../static/img/singleStore1.png' mode="aspectFit" bindtap='cutSingleStore'></image>
         <text>单款库存</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/match.png' mode="aspectFit" bindtap='sampleinspection'></image>
+        <image class='itemImg' src='../../static/img/match.png' mode="aspectFit" bindtap='cutMatch'></image>
         <text>花片配对</text>
       </view>
     </view>
     <view class="title" style="color:#32CD32;padding-top:80rpx">衣胚超市</view>
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/inStore2.png' mode="aspectFit" bindtap='hand'></image>
+        <image class='itemImg' src='../../static/img/inStore2.png' mode="aspectFit" bindtap='embInStore'></image>
         <text>衣胚入库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/outStore2.png' mode="aspectFit" bindtap='yipei'></image>
+        <image class='itemImg' src='../../static/img/outStore2.png' mode="aspectFit" bindtap='embOutStore'></image>
         <text>衣胚出库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/status2.png' mode="aspectFit" bindtap='yipei'></image>
+        <image class='itemImg' src='../../static/img/status2.png' mode="aspectFit" bindtap='embStorageState'></image>
         <text>库存状态</text>
       </view>
     </view>
     <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/singleStore2.png' mode="aspectFit" bindtap='hand'></image>
+        <image class='itemImg' src='../../static/img/singleStore2.png' mode="aspectFit" bindtap='embSingleStore'></image>
         <text>单款库存</text>
       </view>
       <view class="flex-item">
@@ -55,7 +55,7 @@
         <text>阶段出库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/outSum.png' mode="aspectFit" bindtap='yipei'></image>
+        <image class='itemImg' src='../../static/img/outSum.png' mode="aspectFit" bindtap='embOutSum'></image>
         <text>出库汇总</text>
       </view>
     </view>

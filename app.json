@@ -1,24 +1,18 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/index/index",
     "pages/person/person",
-    "pages/scanPiece/scanPiece",
-    "pages/hand/hand",
-    "pages/dispatch/dispatch",
-    "pages/inspection/inspection",
-    "pages/sampleinspection/sampleinspection",
-    "pages/summary/summary",
-    "pages/dayPieceWork/dayPieceWork",
-    "pages/monthPieceWork/monthPieceWork",
-    "pages/dispatchDetail/dispatchDetail",
-    "pages/inspectionDetail/inspectionDetail",
-    "pages/sampleinspectionDetail/sampleinspectionDetail",
     "pages/password/password",
     "pages/employee/employee",
-    "pages/procedureDetail/procedureDetail",
-    "pages/pieceWorkSearch/pieceWorkSearch",
-    "pages/emb/emb"
+    "pages/emb/emb",
+    "pages/cutInStore/cutInStore",
+    "pages/cutOutStore/cutOutStore",
+    "pages/cutChangeStore/cutChangeStore",
+    "pages/cutSingleStore/cutSingleStore",
+    "pages/embInStore/embInStore",
+    "pages/embOutStore/embOutStore",
+    "pages/embSingleStore/embSingleStore",
+    "pages/embOutSum/embOutSum"
   ],
   "window": {
     "backgroundTextStyle": "light",
