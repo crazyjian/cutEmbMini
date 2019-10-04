@@ -51,7 +51,7 @@
         <text>单款库存</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/phase.png' mode="aspectFit" bindtap='yipei'></image>
+        <image class='itemImg' src='../../static/img/phase.png' mode="aspectFit" bindtap='embOutDetail'></image>
         <text>阶段出库</text>
       </view>
       <view class="flex-item">

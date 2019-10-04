@@ -12,7 +12,8 @@
     "pages/embInStore/embInStore",
     "pages/embOutStore/embOutStore",
     "pages/embSingleStore/embSingleStore",
-    "pages/embOutSum/embOutSum"
+    "pages/embOutSum/embOutSum",
+    "pages/embOutDetail/embOutDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

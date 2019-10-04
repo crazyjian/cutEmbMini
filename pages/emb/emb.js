@@ -99,5 +99,10 @@ Page({
     wx.navigateTo({
       url: "../embOutSum/embOutSum"
     })
+  },
+  embOutDetail:function(){
+    wx.navigateTo({
+      url: "../embOutDetail/embOutDetail"
+    })
   }
 })

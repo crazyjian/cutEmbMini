@@ -54,7 +54,7 @@ label{
   border-top: 1px solid darkgray;
   border-right: 1px solid darkgray;
   border-bottom: 1px solid darkgray;
-  width: 1000rpx;
+  width: 1600rpx;
   /* overflow-x: auto; */
 }
 .tr {
@@ -102,7 +102,7 @@ label{
   width:70%;
   margin-left:140rpx;
   position: absolute;
-  top: 140rpx;
+  top: 215rpx;
   z-index:1000;
 }
 
