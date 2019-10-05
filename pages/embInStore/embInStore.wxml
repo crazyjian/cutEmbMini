@@ -1,0 +1,37 @@
+<navigate-title title="衣胚入库" />
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
+  <view class="section">
+    <view class='searchItem'>
+      <view class='searchItemImg'>
+        <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
+      </view>
+      <input class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' bindtap='scanStore' disabled="true"></input>  
+      <view class='searchItemImg' wx:if="{{isShow}}">
+        <image src='{{scanPic}}' style='display:inline' mode="aspectFit"></image>
+      </view>  
+    </view>
+    <view class='button' style="margin-bottom: 50rpx">
+      <button class='btn' bindtap='scanTailor'>扫描裁片</button>
+    </view>
+
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th" style='width:20%'>序号</view>
+        <view class="th" style='width:80%'>二维码</view>
+      </view>
+      <block wx:for="{{tailorQcodes}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td" style='width:20%'>{{index+1}}</view>
+          <view class="td" style='width:80%'>{{item}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td" style='width:20%'>{{index+1}}</view>
+          <view class="td" style='width:80%'>{{item}}</view>
+        </view>
+      </block>
+    </view>
+    <view class='button' style="margin-top:100rpx">
+      <button class='btn' bindtap='inStore'>入库</button>
+    </view>
+  </view>
+</view>

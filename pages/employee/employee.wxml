@@ -1,0 +1,23 @@
+<view class="container" style="padding-top:40rpx;align-items:center;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+    <view class='searchItem'>
+      <text>姓名：{{employee.employeeName}}</text>
+    </view>
+    <view class='searchItem'>
+      <text>工号：{{employee.employeeNumber}}</text>
+    </view>
+    <view class='searchItem'>
+      <text>部门：{{employee.groupName}}</text>
+    </view>
+    <view class='searchItem'>
+      <text>身份证号：{{employee.identifyCard}}</text>
+    </view>
+    <view class='searchItem'>
+      <text>银行卡号：{{employee.bankCard}}</text>
+    </view>
+    <view class='searchItem'>
+      <text>电话：{{employee.phoneNumber}}</text>
+    </view>
+  </view>
+</view>

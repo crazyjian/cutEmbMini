@@ -1,0 +1,59 @@
+<view class="container" style="padding-top:40rpx;align-items:center;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+    <view class='searchItem' style="margin-top:20rpx;">
+      <text>订单号：</text>
+      <input class='searchItemInput' name='orderName' placeholder='请输入订单号' value="{{orderName}}" bindinput='getOrderName'></input>
+      <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex}}'>
+        <view wx:for="{{bindSource}}">
+          <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="flex-wrp" style="display: flex;flex-direction:row;">
+      <div class='inputItem' style="margin-right:20rpx;display:flex;flex-direction:row;">
+        <view>颜色：</view>
+        <picker style="width:60%" bindchange="bindColorChange" value="{{c_index}}" range="{{colorNames}}">
+          <view class="picker">
+            {{colorNames[c_index]}}
+          </view>
+        </picker>
+      </div>
+      <div class='inputItem' style="display:flex;flex-direction:row;">
+        <view>尺码：</view>
+        <picker style="width:60%" bindchange="bindSizeChange" value="{{s_index}}" range="{{sizeNames}}">
+          <view class="picker">
+            {{sizeNames[s_index]}}
+          </view>
+        </picker>
+      </div>
+    </view>
+    <view class='button'>
+      <button class='btn' bindtap='search'>查询</button>
+    </view>
+    <scroll-view scroll-x="true">  
+    <view class="table">
+      <view class="tr bg-w">
+        <view class="th" style='width:25%'>颜色</view>
+        <view class="th" style='width:25%'>尺码</view>
+        <view class="th" style='width:25%'>数量</view>
+        <view class="th" style='width:25%'>位置</view>
+      </view>
+      <block wx:for="{{records}}" wx:key="{{orderName}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td" style='width:25%'>{{item.colorName}}</view>
+          <view class="td" style='width:25%'>{{item.sizeName}}</view>
+          <view class="td" style='width:25%'>{{item.embStorageCount}}</view>
+          <view class="td" style='width:25%'>{{item.embStoreLocation}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td" style='width:25%'>{{item.colorName}}</view>
+          <view class="td" style='width:25%'>{{item.sizeName}}</view>
+          <view class="td" style='width:25%'>{{item.embStorageCount}}</view>
+          <view class="td" style='width:25%'>{{item.embStoreLocation}}</view>
+        </view>
+      </block>
+    </view>
+    </scroll-view>
+  </view>
+</view>
