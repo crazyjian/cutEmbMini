@@ -104,5 +104,15 @@ Page({
     wx.navigateTo({
       url: "../embOutDetail/embOutDetail"
     })
+  },
+  cutStorageState:function(){
+    wx.navigateTo({
+      url: "../cutStorageState/cutStorageState"
+    })
+  },
+  embStorageState:function(){
+    wx.navigateTo({
+      url: "../embStorageState/embStorageState"
+    })
   }
 })

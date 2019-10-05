@@ -36,13 +36,26 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == 200 && res.data) {
-          obj.setData({
-            records: res.data.embOutDetailList
-          });
+          if (res.data.embOutDetailList.length==0) {
+            wx.showToast({
+              title: "没有数据",
+              icon: 'none',
+              duration: 1000,
+            })
+          }else {
+            obj.setData({
+              records: res.data.embOutDetailList
+            });
+          }
         }else {
           obj.setData({
             records: []
           });
+          wx.showToast({
+            title: "查询失败",
+            image: '../../static/img/error.png',
+            duration: 1000,
+          })
         }
       },
       fail:function() {
