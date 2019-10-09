@@ -133,6 +133,7 @@ Page({
             })
             obj.setData({
               tailorQcode: '',
+              index: 0,
               isShowTailor: false
             })
           } 

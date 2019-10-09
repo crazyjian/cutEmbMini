@@ -165,6 +165,7 @@ Page({
                                   })
                                   obj.setData({
                                     tailorQcode:'',
+                                    cutStoreQcode: '',
                                     isShowTailor:false
                                   })
                                 }
