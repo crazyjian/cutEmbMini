@@ -93,64 +93,73 @@ Page({
       })
       return false;
     }
-    var embOutStoreJson = {};
-    embOutStoreJson.groupName = groupName;
-    embOutStoreJson.tailorQcode = new Array(tailorQcode);
-    wx.request({
-      url: app.globalData.backUrl + '/erp/miniaddemboutstore',
-      data: {
-        'embOutStoreJson': JSON.stringify(embOutStoreJson)
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-      },
-      success: function (res) {
-        if (res.statusCode == 200) {
-          if (res.data.result == 3) {
-            wx.showToast({
-              title: "二维码记录不存在",
-              icon: 'none',
-              duration: 1000,
-            })
-          } else if (res.data.result == 2) {
-            wx.showToast({
-              title: "出库失败",
-              image: '../../static/img/error.png',
-              duration: 1000,
-            })
-          } else if (res.data.result==1){
-            wx.showToast({
-              title: "库存记录不存在",
-              icon: 'none',
-              duration: 1000,
-            })
-          } else if (res.data.result == 0) {
-            wx.showToast({
-              title: res.data.embStoreLocation + "共有" + res.data.embOutCount+"扎出库成功",
-              icon: 'none',
-              duration: 3000,
-            })
-            obj.setData({
-              tailorQcode: '',
-              isShowTailor: false
-            })
-          } 
-        }else {
-          wx.showToast({
-            title: "出库失败",
-            image: '../../static/img/error.png',
-            duration: 1000,
-          })
+    wx.showModal({
+      title: '提示',
+      content: '确认出库吗?',
+      success: function (sm) {
+        if (sm.confirm) {
+          var embOutStoreJson = {};
+          embOutStoreJson.groupName = groupName;
+          embOutStoreJson.tailorQcode = new Array(tailorQcode);
+          wx.request({
+            url: app.globalData.backUrl + '/erp/miniaddemboutstore',
+            data: {
+              'embOutStoreJson': JSON.stringify(embOutStoreJson)
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            success: function (res) {
+              if (res.statusCode == 200) {
+                if (res.data.result == 3) {
+                  wx.showToast({
+                    title: "二维码记录不存在",
+                    icon: 'none',
+                    duration: 1000,
+                  })
+                } else if (res.data.result == 2) {
+                  wx.showToast({
+                    title: "出库失败",
+                    image: '../../static/img/error.png',
+                    duration: 1000,
+                  })
+                } else if (res.data.result==1){
+                  wx.showToast({
+                    title: "库存记录不存在",
+                    icon: 'none',
+                    duration: 1000,
+                  })
+                } else if (res.data.result == 0) {
+                  wx.showToast({
+                    title: res.data.embStoreLocation + "共有" + res.data.embOutCount+"扎出库成功",
+                    icon: 'none',
+                    duration: 3000,
+                  })
+                  obj.setData({
+                    tailorQcode: '',
+                    index: 0,
+                    isShowTailor: false
+                  })
+                } 
+              }else {
+                wx.showToast({
+                  title: "出库失败",
+                  image: '../../static/img/error.png',
+                  duration: 1000,
+                })
+              }
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: "服务器发生异常",
+                image: '../../static/img/error.png',
+                duration: 1000,
+              })
+            }
+          });
         }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: "服务器发生异常",
-          image: '../../static/img/error.png',
-          duration: 1000,
-        })
       }
-    });
+    })
   }
 })

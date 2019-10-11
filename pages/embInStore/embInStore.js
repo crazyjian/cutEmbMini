@@ -134,6 +134,7 @@ Page({
                           })
                           obj.setData({
                             tailorQcodes: [],
+							              cutStoreQcode: '',
                           })
                         }else if(res.data==1){
                           wx.showToast({

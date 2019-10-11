@@ -141,7 +141,8 @@ Page({
                             duration: 1000
                           })
                           obj.setData({
-                            tailorQcodes: []
+                            tailorQcodes: [],
+							              cutStoreQcode: '',
                           })
                         }
                       }else {

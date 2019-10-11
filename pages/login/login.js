@@ -93,7 +93,7 @@ Page({
       return false;
     }
     wx.request({
-      url: app.globalData.backUrl + "/erp/miniemployeelogin",
+      url: app.globalData.backUrl + "/erp/minicutemblogin",
       data: {
         employeeNumber: e.detail.value.employeeNumber,
         passWord: e.detail.value.passWord
@@ -103,16 +103,15 @@ Page({
         'content-type': 'application/x-www-form-urlencoded' // 默认值
       },
       success: function (res) {
-        // console.log(res.data);
         if (res.statusCode == 200) {
           //访问正常
-          if (!res.data.flag) {
+          if (res.data.flag == 2) {
             wx.showToast({
               title: "工号或密码错误",
               image: '../../static/img/error.png',
               duration: 1000,
             })
-          } else {
+          } else if (res.data.flag == 0) {
             app.globalData.employee = res.data.employee;
             app.globalData.employeeNumber = employeeNumber;
             wx.setStorage({
@@ -138,6 +137,12 @@ Page({
                     })
                 }, 500)
               }
+            })
+          }else{
+            wx.showToast({
+              title: "无登录权限",
+              image: '../../static/img/error.png',
+              duration: 1000,
             })
           }
         }

@@ -23,7 +23,6 @@ Page({
       success: function (res) {
         // console.log(res.data);
         if (res.statusCode == 200 && res.data) {
-          console.log(res.data.embStorageStateList);
           var rows = [];
           var records = [];
           var tmp = {};
