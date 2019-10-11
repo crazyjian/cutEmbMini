@@ -10,7 +10,7 @@ page {
 }
 
 text {
-  color: black
+  color: black;
 }
 
 .title {
@@ -96,6 +96,7 @@ text {
     padding-bottom: 2vh;
     border-top-right-radius: 16rpx;
     border-top-left-radius: 16rpx;
+    text-align: center;
 }
  
 .toast-main {
@@ -108,23 +109,19 @@ text {
 .toast-input {
     margin-left: 5%;
     margin-right: 5%;
-    border: 1px solid #ddd;
     padding-left: 2vh;
     padding-right: 2vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
+    font-size: 56rpx;
 }
  
 .toast-button {
     display: flex;
 }
  
-.button1 {
-    width: 50%;
-}
- 
 .button2 {
-    width: 50%;
+    width: 100%;
 }
  
 .button1 button {

@@ -4,6 +4,8 @@ const app = getApp()
 
 Page({
   data: {
+    isHide:true,
+    location:""
   },
   //事件处理函数
 
@@ -44,15 +46,19 @@ Page({
             // console.log(res.data);
             if (res.statusCode == 200) {
               if(res.data && res.data.length>0) {
-                wx.showToast({
-                  title: '裁片位置：' + res.data[0],
-                  icon: 'none',
-                  duration: 5000
+                // wx.showToast({
+                //   title: '裁片位置：' + res.data[0],
+                //   icon: 'none',
+                //   duration: 5000
+                // })
+                obj.setData({
+                  isHide: false,
+                  location: res.data[0]
                 })
               }else {
                 wx.showToast({
                   title: "没有查询到位置信息",
-                  image: '../../static/img/error.png',
+                  icon: "none",
                   duration: 1000,
                 })
               }
@@ -73,6 +79,12 @@ Page({
           }
         })
       }
+    })
+  },
+  confirm:function() {
+    this.setData({
+      isHide:true,
+      location:""
     })
   },
   cutSingleStore:function() {
