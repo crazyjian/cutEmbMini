@@ -70,6 +70,9 @@ Page({
     } else if (qrCode == '1') {
       app.globalData.backUrl = "https://xiangsheng.jingyiclothing.com";
       app.globalData.factoryName = "中山翔胜制衣";
+    } else if (qrCode == '2') {
+      app.globalData.backUrl = "https://lfm.jingyiclothing.com";
+      app.globalData.factoryName = "盐城立福麦";
     } else {
       app.globalData.backUrl = "http://192.168.0.101:8080";
       app.globalData.factoryName = "";

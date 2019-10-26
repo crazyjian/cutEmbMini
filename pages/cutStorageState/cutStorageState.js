@@ -26,6 +26,8 @@ Page({
           var rows = [];
           var records = [];
           var tmp = {};
+          tmp.sumList = [];
+          tmp.statusList = [];
           var record = [];
           for (var i = 0; i < res.data.storageStateList.length;i++) {
             var locations = res.data.storageStateList[i].storehouseLocation.split("-");
@@ -33,22 +35,25 @@ Page({
               records.push(record);
               record = [];
               tmp = {};
+              tmp.sumList = [];
+              tmp.statusList = [];
             }
             tmp.col = locations[1];
-            var sum = "sum" + locations[2];
-            var status = "status" + locations[2];
-            tmp[sum] = res.data.storageStateList[i].storageCount;
+            tmp.floor = res.data.storageStateList[i].floor;
+            tmp.sumList.push(res.data.storageStateList[i].storageCount);
             var radio = res.data.storageStateList[i].storageCount / res.data.storageStateList[i].storagePlanCount;
             if(radio<0.3) {
-              tmp[status] = "rgb(45,202,147)";
+              tmp.statusList.push("rgb(45,202,147)");
             }else if(0.3<=radio<=0.9) {
-              tmp[status] = "rgb(217,202,23)";
+              tmp.statusList.push("rgb(217,202,23)");
             }else {
-              tmp[status] = "rgb(206,39,60)";
+              tmp.statusList.push("rgb(206,39,60)");
             }
-            if (locations[2] == 3) {
+            if (locations[2] == res.data.storageStateList[i].floor) {
               record.push(tmp);
               tmp = {};
+              tmp.sumList = [];
+              tmp.statusList = [];
             }
             if (i == res.data.storageStateList.length-1) {
               records.push(record);

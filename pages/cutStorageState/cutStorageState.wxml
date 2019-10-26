@@ -21,9 +21,9 @@
         <block wx:for="{{records[idx]}}" wx:for-item="itemName">
           <view class="flex-col" style="margin-left: 20rpx;">
             <view>{{itemName.col}}</view>
-            <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.status1}}">{{itemName.sum1}}</view>
-            <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.status2}}">{{itemName.sum2}}</view>
-            <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.status3}}">{{itemName.sum3}}</view>
+            <view wx:for="{{itemName.floor}}" wx:for-item="value" wx:for-index="colKey">
+             <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.statusList[value]}}">{{itemName.sumList[value]}}</view>
+             </view>
           </view>
         </block>
       </view>
