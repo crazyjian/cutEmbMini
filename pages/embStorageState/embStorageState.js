@@ -40,8 +40,6 @@ Page({
             }
             tmp.col = locations[1];
             tmp.floor = res.data.embStorageStateList[i].floor;
-            var sum = "sum" + locations[2];
-            var status = "status" + locations[2];
             tmp.sumList.push(res.data.embStorageStateList[i].embStorageCount);
             var radio = res.data.embStorageStateList[i].embStorageCount / res.data.embStorageStateList[i].embPlanCount;
             if(radio<0.3) {
@@ -51,7 +49,7 @@ Page({
             }else {
               tmp.statusList.push("rgb(206,39,60)");
             }
-            if (locations[2] == 3) {
+            if (locations[2] == res.data.embStorageStateList[i].floor) {
               record.push(tmp);
               tmp = {};
               tmp.sumList = [];
