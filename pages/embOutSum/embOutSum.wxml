@@ -2,13 +2,21 @@
   
   <view class="section">
     <view class='searchItem' style="margin-top:20rpx;">
-      <text>订单号：</text>
-      <input class='searchItemInput' name='orderName' placeholder='请输入订单号' value="{{orderName}}" bindinput='getOrderName'></input>
+      <text>单号：</text>
+      <input class='searchItemInput' name='versionNumber' placeholder='请输入单号' value="{{versionNumber}}" bindinput='getClothesVersionNumber'></input>
       <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex}}'>
         <view wx:for="{{bindSource}}">
           <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
         </view>
       </scroll-view>
+    </view>
+    <view class='searchItem' style="margin-top:20rpx;">
+      <text>款号：</text>
+      <picker bindchange="bindOrderChange" value="{{o_index}}" range="{{orderNames}}">
+          <view class="picker">
+            {{orderNames[o_index]}}
+          </view>
+        </picker>
     </view>
     <view class='button'>
       <button class='btn' bindtap='search'>查询</button>

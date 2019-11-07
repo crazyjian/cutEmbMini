@@ -4,26 +4,28 @@ const app = getApp()
 Page({
   data: {
     records:[],
-    orderName:'',
+    versionNumber:'',
     zIndex:-1,
     bindSource: [],
     c_index:0,
     colorNames: ["全部"],
     s_index: 0,
-    sizeNames: ["全部"]
+    sizeNames: ["全部"],
+    orderNames: ["请选择款号"],
+    o_index: 0
   },
   onLoad: function (option) {
   },
-  getOrderName: function (e) {
+  getClothesVersionNumber: function (e) {
 
     var obj = this;
-    var orderName = e.detail.value//用户实时输入值
+    var versionNumber = e.detail.value//用户实时输入值
     var newSource = []//匹配的结果
-    if (orderName != "") {
+    if (versionNumber != "") {
       wx.request({
-        url: app.globalData.backUrl + '/erp/minigetemborderhint',
+        url: app.globalData.backUrl + '/erp/minigetversionhint',
         data: {
-          subOrderName: orderName
+          versionNumber: versionNumber
         },
         method: 'GET',
         header: {
@@ -32,12 +34,12 @@ Page({
         success: function (res) {
           // console.log(res.data);
           if (res.statusCode == 200 && res.data) {
-            for (var i = 0; i < res.data.embOrderNameList.length;i++) {
-              newSource.push(res.data.embOrderNameList[i]);
+            for (var i = 0; i < res.data.versionList.length;i++) {
+              newSource.push(res.data.versionList[i]);
             }
             obj.setData({
               bindSource: newSource,
-              orderName: orderName,
+              versionNumber: versionNumber,
               zIndex:1000
             });
           }
@@ -46,38 +48,77 @@ Page({
     }else {
       obj.setData({
         bindSource: newSource,
-        orderName: orderName
+        versionNumber: versionNumber
       });
     }
   },
   itemtap: function (e) {
     var obj = this;
+    this.setData({
+      versionNumber: e.target.id,
+      zIndex: -1
+    })
     wx.request({
-      url: app.globalData.backUrl + '/erp/minigetembcolorhint',
+      url: app.globalData.backUrl + '/erp/minigetorderbyversion',
       data: {
-        orderName: e.target.id
+        clothesVersionNumber: e.target.id
       },
       method: 'GET',
       header: {
         'content-type': 'application/x-www-form-urlencoded' // 默认值
       },
       success: function (res) {
-        var colorNames = ["全部"];
+        var orderNames = ["请选择款号"];
         if (res.statusCode == 200 && res.data) {
-          for (var i = 0; i < res.data.embColorList.length;i++) {
-            colorNames.push(res.data.embColorList[i]);
+          for (var i = 0; i < res.data.orderList.length; i++) {
+            orderNames.push(res.data.orderList[i]);
           }
         }
         obj.setData({
-          colorNames: colorNames,
-          c_index:0
+          orderNames: orderNames,
+          o_index: 0
         });
       }
     })
-    this.setData({
-      orderName: e.target.id,
-      zIndex: -1
+  },
+  bindOrderChange: function (e) {
+    var obj = this;
+    obj.setData({
+      o_index: e.detail.value
     })
+    if (e.detail.value == 0) {
+      var colorNames = ["全部"];
+      var sizeNames = ["全部"];
+      obj.setData({
+        colorNames: colorNames,
+        sizeNames: sizeNames,
+        c_index: 0,
+        s_index: 0
+      });
+    } else {
+      wx.request({
+        url: app.globalData.backUrl + '/erp/minigetembcolorhint',
+        data: {
+          orderName: obj.data.orderNames[obj.data.o_index]
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        success: function (res) {
+          var colorNames = ["全部"];
+          if (res.statusCode == 200 && res.data) {
+            for (var i = 0; i < res.data.embColorList.length; i++) {
+              colorNames.push(res.data.embColorList[i]);
+            }
+          }
+          obj.setData({
+            colorNames: colorNames,
+            c_index: 0
+          });
+        }
+      })
+    }
   },
   search:function() {
     var obj = this;
@@ -89,10 +130,14 @@ Page({
     if (sizeName == "全部") {
       sizeName = "";
     }
+    var orderName = obj.data.orderNames[obj.data.o_index];
+    if (orderName == "请选择款号") {
+      orderName = "";
+    }
     wx.request({
       url: app.globalData.backUrl + '/erp/miniembstoragequery',
       data: {
-        orderName: obj.data.orderName,
+        orderName: orderName,
         colorName: colorName,
         sizeName: sizeName
       },
@@ -128,7 +173,7 @@ Page({
     wx.request({
       url: app.globalData.backUrl + '/erp/minigetembsizehint',
       data: {
-        orderName: obj.data.orderName,
+        orderName: obj.data.orderNames[obj.data.o_index],
         colorName: obj.data.colorNames[obj.data.c_index]
       },
       method: 'GET',
