@@ -102,6 +102,11 @@ Page({
       url: "../embOutStore/embOutStore"
     })
   },
+  embSingleOutStore: function () {
+    wx.redirectTo({
+      url: "../embSingleOutStore/embSingleOutStore"
+    })
+  },
   embSingleStore:function() {
     wx.navigateTo({
       url: "../embSingleStore/embSingleStore"

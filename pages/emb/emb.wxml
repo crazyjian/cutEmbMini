@@ -38,14 +38,18 @@
       </view>
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/outStore2.png' mode="aspectFit" bindtap='embOutStore'></image>
-        <text>衣胚出库</text>
+        <text>批量出库</text>
       </view>
+      <view class="flex-item">
+        <image class='itemImg' src='../../static/img/outStore3.png' mode="aspectFit" bindtap='embSingleOutStore'></image>
+        <text>单扎出库</text>
+      </view>
+    </view>
+    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/status2.png' mode="aspectFit" bindtap='embStorageState'></image>
         <text>库存状态</text>
       </view>
-    </view>
-    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/singleStore2.png' mode="aspectFit" bindtap='embSingleStore'></image>
         <text>单款库存</text>
@@ -54,6 +58,8 @@
         <image class='itemImg' src='../../static/img/phase.png' mode="aspectFit" bindtap='embOutDetail'></image>
         <text>阶段出库</text>
       </view>
+    </view>
+    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/outSum.png' mode="aspectFit" bindtap='embOutSum'></image>
         <text>出库汇总</text>

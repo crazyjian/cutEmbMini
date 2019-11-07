@@ -11,6 +11,7 @@
     "pages/cutSingleStore/cutSingleStore",
     "pages/embInStore/embInStore",
     "pages/embOutStore/embOutStore",
+    "pages/embSingleOutStore/embSingleOutStore",
     "pages/embSingleStore/embSingleStore",
     "pages/embOutSum/embOutSum",
     "pages/embOutDetail/embOutDetail",
