@@ -50,7 +50,7 @@ Page({
         var tailorQcodes = obj.data.tailorQcodes;
         var isAdd = true;
         for (var i = 0; i < tailorQcodes.length; i++) {
-          if (tailorQcodes[i] == res.result) {
+          if (tailorQcodes[i].tailorQcodeID == res.result) {
             isAdd = false;
             wx.showToast({
               title: '扫描裁片重复',
@@ -61,11 +61,49 @@ Page({
           }
         }
         if (isAdd) {
-          tailorQcodes.push(res.result);
+          wx.request({
+            url: app.globalData.backUrl + '/erp/minigettailorbytailorqcodeid',
+            data: {
+              'tailorQcodeID': res.result
+            },
+            method: 'GET',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' // 默认值
+            },
+            success: function (response) {
+              if (response.statusCode == 200) {
+                if (response.data.tailor) {
+                  if (tailorQcodes.length > 0 && (tailorQcodes[0].colorName != response.data.tailor.colorName || tailorQcodes[0].sizeName != response.data.tailor.sizeName)) {
+                    response.data.tailor.mark = 'yellow';
+                  }
+                  tailorQcodes.push(response.data.tailor);
+                }else {
+                  var tmp = {};
+                  tmp.tailorQcodeID = res.result;
+                  tmp.mark = 'red';
+                  tailorQcodes.push(tmp);
+                } 
+                obj.setData({
+                  tailorQcodes: tailorQcodes
+                })            
+              }else {
+                wx.showToast({
+                  title: "服务器发生错误",
+                  image: '../../static/img/error.png',
+                  duration: 1000,
+                })
+              }
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: "服务连接失败",
+                image: '../../static/img/error.png',
+                duration: 1000,
+              })
+            }
+          });
         }
-        obj.setData({
-          tailorQcodes: tailorQcodes
-        })
+        
       }
     })
   },
@@ -114,7 +152,7 @@ Page({
                 if (sm.confirm) {
                   var embInStoreJson = {};
                   embInStoreJson.embStoreLocation = obj.data.cutStoreQcode;
-                  embInStoreJson.tailorQcode = tailorQcodes;
+                  embInStoreJson.tailors = tailorQcodes;
                   wx.request({
                     url: app.globalData.backUrl + '/erp/miniembinstore',
                     data: {
