@@ -7,7 +7,9 @@ Page({
     tailorQcodes:[],
     placeholder:'请扫描货架二维码',
     isShow:false,
-    scanPic:'../../static/img/success.png'
+    scanPic:'../../static/img/success.png',
+    isFocus:false,
+    isFocus1: false
   },
   onLoad: function (option) {
     
@@ -40,6 +42,17 @@ Page({
           scanPic: '../../static/img/scan_error.png'
         })
       }
+    })
+  },
+  moveCursor:function() {
+    this.setData({
+      isFocus:true
+    })
+  },
+  moveCursor1: function () {
+    this.setData({
+      isFocus: false,
+      isFocus1:true
     })
   },
   scanTailor:function(){

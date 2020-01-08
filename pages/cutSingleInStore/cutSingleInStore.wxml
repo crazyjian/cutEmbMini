@@ -5,16 +5,26 @@
       <view class='searchItemImg'>
         <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
       </view>
-      <input class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' bindtap='scanStore' disabled="true"></input>  
+      <input class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' focus='true' bindconfirm='moveCursor'></input>  
       <view class='searchItemImg' wx:if="{{isShow}}">
         <image src='{{scanPic}}' style='display:inline' mode="aspectFit"></image>
       </view>  
     </view>
-    <view class='button' style="margin-bottom: 50rpx">
-      <button class='btn' bindtap='scanTailor'>扫描裁片</button>
+
+    <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx">
+      <view style="width:5%">1</view>
+      <input  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus}}' bindconfirm='moveCursor1'></input> 
+    </view>
+    <view style="flex-direction:row;display: flex;width: 100%;align-items: center;">
+      <view style="width:5%">2</view>
+      <input  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus1}}'></input> 
     </view>
 
-    <view class="table">
+    <!-- <view class='button' style="margin-bottom: 50rpx">
+      <button class='btn' bindtap='scanTailor'>扫描裁片</button>
+    </view> -->
+
+    <!-- <view class="table">
       <view class="tr bg-w">
         <view class="th" style='width:20%'>序号</view>
         <view class="th" style='width:80%'>二维码</view>
@@ -29,7 +39,7 @@
           <view class="td" style='width:80%'>{{item.tailorQcodeID}}</view>
         </view>
       </block>
-    </view>
+    </view> -->
     <view class='button' style="margin-top:100rpx">
       <button class='btn' bindtap='inStore'>入库</button>
     </view>
