@@ -16,7 +16,8 @@
     "pages/embOutSum/embOutSum",
     "pages/embOutDetail/embOutDetail",
     "pages/cutStorageState/cutStorageState",
-    "pages/embStorageState/embStorageState"
+    "pages/embStorageState/embStorageState",
+    "pages/cutSingleInStore/cutSingleInStore"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,12 +8,12 @@
         <text>裁片入库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/outStore1.png' mode="aspectFit" bindtap='cutOutStore'></image>
-        <text>裁片出库</text>
+        <image class='itemImg' src='../../static/img/inStore3.png' mode="aspectFit" bindtap='cutSingleInStore'></image>
+        <text>单扎入库</text>
       </view>
       <view class="flex-item">
-        <image class='itemImg' src='../../static/img/changeStore.png' mode="aspectFit" bindtap='cutChangeStore'></image>
-        <text>裁片调库</text>
+        <image class='itemImg' src='../../static/img/outStore1.png' mode="aspectFit" bindtap='cutOutStore'></image>
+        <text>裁片出库</text>
       </view>
     </view>
     <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
@@ -28,6 +28,12 @@
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/match.png' mode="aspectFit" bindtap='cutMatch'></image>
         <text>花片配对</text>
+      </view>
+    </view>
+    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
+      <view class="flex-item">
+        <image class='itemImg' src='../../static/img/changeStore.png' mode="aspectFit" bindtap='cutChangeStore'></image>
+        <text>裁片调库</text>
       </view>
     </view>
     <view class="title" style="color:#32CD32;padding-top:80rpx">衣胚超市</view>

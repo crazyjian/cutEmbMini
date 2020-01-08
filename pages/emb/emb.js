@@ -131,5 +131,10 @@ Page({
     wx.navigateTo({
       url: "../embStorageState/embStorageState"
     })
+  },
+  cutSingleInStore:function(){
+    wx.redirectTo({
+      url: "../cutSingleInStore/cutSingleInStore"
+    })
   }
 })

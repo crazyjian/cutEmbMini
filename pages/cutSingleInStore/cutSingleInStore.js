@@ -73,10 +73,10 @@ Page({
             success: function (response) {
               if (response.statusCode == 200) {
                 if (response.data.tailor) {
-                  for (var i = 0; i < tailorQcodes.length; i++) {
-                    if (tailorQcodes[i].mark == 'red') {
+                  for (var i = 0; i < tailorQcodes.length;i++) {
+                    if (tailorQcodes[i].mark=='red') {
                       continue;
-                    } else if (tailorQcodes[i].colorName != response.data.tailor.colorName || tailorQcodes[i].sizeName != response.data.tailor.sizeName) {
+                    } else if (tailorQcodes[i].colorName != response.data.tailor.colorName || tailorQcodes[i].sizeName != response.data.tailor.sizeName){
                       response.data.tailor.mark = 'yellow';
                     }
                     break;
@@ -133,9 +133,9 @@ Page({
       return false;
     }
     wx.request({
-      url: app.globalData.backUrl + '/erp/minigetembstorebylocation',
+      url: app.globalData.backUrl + '/erp/minigetstorehousebylocation',
       data: {
-        'embStoreLocation': obj.data.cutStoreQcode
+        'storehouseLocation': obj.data.cutStoreQcode
       },
       method: 'GET',
       header: {
@@ -156,12 +156,12 @@ Page({
               success: function (sm) {
                 if (sm.confirm) {
                   var embInStoreJson = {};
-                  embInStoreJson.embStoreLocation = obj.data.cutStoreQcode;
+                  embInStoreJson.cutStoreLocation = obj.data.cutStoreQcode;
                   embInStoreJson.tailors = tailorQcodes;
                   wx.request({
-                    url: app.globalData.backUrl + '/erp/miniembinstore',
+                    url: app.globalData.backUrl + '/erp/miniinstoresingle',
                     data: {
-                      'embInStoreJson': JSON.stringify(embInStoreJson)
+                      'inStoreJson': JSON.stringify(embInStoreJson)
                     },
                     method: 'POST',
                     header: {
