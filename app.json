@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/cutSingleInStore/cutSingleInStore",
     "pages/login/login",
     "pages/person/person",
     "pages/password/password",
@@ -17,7 +16,8 @@
     "pages/embOutSum/embOutSum",
     "pages/embOutDetail/embOutDetail",
     "pages/cutStorageState/cutStorageState",
-    "pages/embStorageState/embStorageState"
+    "pages/embStorageState/embStorageState",
+    "pages/cutSingleInStore/cutSingleInStore"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -6,42 +6,21 @@
         <view class='searchItemImg'>
           <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
         </view>
-        <textarea class='searchItemInput' placeholder='{{placeholder}}' style='width:80%;font-size: 42rpx;' value='{{cutStoreQcode}}' placeholder-style='font-size:40rpx' focus='true' bindlinechange='moveCursor' bindinput='changeCutStoreQcode'/>
+        <textarea class='searchItemInput' placeholder='{{placeholder}}' style='width:80%;font-size: 42rpx;' value='{{cutStoreQcode}}' placeholder-style='font-size:40rpx' focus='{{storeFocus}}' bindinput='changeCutStoreQcode' disabled='{{storeDisabled}}' show-confirm-bar='false'/>
         <view class='searchItemImg' wx:if="{{isShow}}">
           <image src='{{scanPic}}' style='display:inline' mode="aspectFit"></image>
         </view>  
       </view>
-      <button style='color: #FFF;background-color: #6495ED;font-size: 25rpx;width: 190rpx'>重新扫描</button>
+      <button style='color: #FFF;background-color: #6495ED;font-size: 25rpx;width: 190rpx' bindtap='clearCutStoreQcode'>重新扫描</button>
     </view>
-    <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx">
-      <view style="width:5%">1</view>
-      <input  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus}}' bindinput='moveCursor1'/> 
-    </view>
-    <view style="flex-direction:row;display: flex;width: 100%;align-items: center;">
-      <view style="width:5%">2</view>
-      <textarea  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus1}}'/> 
-    </view>
-
-    <!-- <view class='button' style="margin-bottom: 50rpx">
-      <button class='btn' bindtap='scanTailor'>扫描裁片</button>
-    </view> -->
-
-    <!-- <view class="table">
-      <view class="tr bg-w">
-        <view class="th" style='width:20%'>序号</view>
-        <view class="th" style='width:80%'>二维码</view>
+    <block wx:for="{{tailorQcodes}}" wx:key="tailorQcodeID">
+      <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx;height:62rpx;">
+        <view style="width:5%">{{index+1}}</view>
+        <textarea style='width:65%;background:#fff;height:100%;font-size: 42rpx;' focus='{{item.focus}}' bindinput='tailorMoveCursor' value='{{item.tailorQcodeID}}' disabled='{{item.disabled}}' data-index='{{index}}' show-confirm-bar='false'/> 
+        <image class='itemImg' src='{{item.srcUrl}}' mode="aspectFit" style="width:15%;height: 100%;" wx:if="{{item.imgShow}}"></image>
+        <image class='itemImg' src='../../static/img/delete.png' mode="aspectFit" bindtap='delTailorQcode' data-index='{{index}}' style="width:15%;height: 100%;" wx:if="{{item.delShow}}"></image>
       </view>
-      <block wx:for="{{tailorQcodes}}">
-        <view class="tr bg-g" wx:if="{{index % 2 == 0}}" style="background:{{item.mark}}">
-          <view class="td" style='width:20%'>{{index+1}}</view>
-          <view class="td" style='width:80%'>{{item.tailorQcodeID}}</view>
-        </view>
-        <view class="tr" wx:else style="background:{{item.mark}}">
-          <view class="td" style='width:20%'>{{index+1}}</view>
-          <view class="td" style='width:80%'>{{item.tailorQcodeID}}</view>
-        </view>
-      </block>
-    </view> -->
+    </block>
     <view class='button' style="margin-top:100rpx">
       <button class='btn' bindtap='inStore'>入库</button>
     </view>
