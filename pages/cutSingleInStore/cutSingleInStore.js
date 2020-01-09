@@ -14,6 +14,9 @@ Page({
   onLoad: function (option) {
     
   },
+  changeCutStoreQcode:function(e) {
+    console.log(e)
+  },
   scanStore:function() {
     var obj = this;
     wx.scanCode({
@@ -44,16 +47,14 @@ Page({
       }
     })
   },
-  moveCursor:function() {
-    this.setData({
-      isFocus:true
-    })
+  moveCursor:function(e) {
+    // this.setData({
+    //   isFocus:true
+    // })
+    console.log(e)
   },
-  moveCursor1: function () {
-    this.setData({
-      isFocus: false,
-      isFocus1:true
-    })
+  moveCursor1: function (e) {
+    console.log(e)
   },
   scanTailor:function(){
     var obj = this;

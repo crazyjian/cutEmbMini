@@ -165,11 +165,9 @@ label {
 
 .searchItem {
   border-radius:10rpx;
-  width:100%;
-  height:80rpx;
+  width:65%;
+  height:62rpx;
   background:#fff;
-  margin-bottom: 50rpx;
-  margin-top:10rpx;
   display: flex;
 }
 
