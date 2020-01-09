@@ -5,7 +5,7 @@
       <view class='searchItemImg'>
         <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
       </view>
-      <input class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' focus='true' bindconfirm='moveCursor'></input>  
+      <textarea class='searchItemInput' placeholder='{{placeholder}}' style='width:80%' value='{{cutStoreQcode}}' focus='true' bindlinechange='moveCursor'></textarea>  
       <view class='searchItemImg' wx:if="{{isShow}}">
         <image src='{{scanPic}}' style='display:inline' mode="aspectFit"></image>
       </view>  
@@ -13,11 +13,11 @@
 
     <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx">
       <view style="width:5%">1</view>
-      <input  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus}}' bindconfirm='moveCursor1'></input> 
+      <textarea  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus}}' bindlinechange='moveCursor1'></textarea> 
     </view>
     <view style="flex-direction:row;display: flex;width: 100%;align-items: center;">
       <view style="width:5%">2</view>
-      <input  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus1}}'></input> 
+      <textarea  style='width:75%;background:#fff;height:80rpx' focus='{{isFocus1}}'></textarea> 
     </view>
 
     <!-- <view class='button' style="margin-bottom: 50rpx">
