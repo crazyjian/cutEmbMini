@@ -213,7 +213,7 @@ Page({
       return false;
     }
     var tailorQcodes = this.data.tailorQcodes
-    if (tailorQcodes.length==0) {
+    if (tailorQcodes.length == 0 || tailorQcodes.length==1 ) {
       wx.showToast({
         title: '请扫描裁片二维码',
         icon: 'none',
