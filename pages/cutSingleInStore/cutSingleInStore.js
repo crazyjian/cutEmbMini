@@ -5,9 +5,7 @@ Page({
   data: {
     cutStoreQcode:'',
     tailorQcodes: [],
-    placeholder:'请扫描货架二维码',
-    isShow:false,
-    scanPic:'../../static/img/success.png',
+    placeholder:'扫描货架二维码',
     storeFocus:true,
     storeDisabled:false,
   },
@@ -126,79 +124,10 @@ Page({
   delTailorQcode:function(e){
     var index = e.currentTarget.dataset.index;
     var tailorQcodes = this.data.tailorQcodes;
-    tailorQcodes.splice(index, 1)
+    tailorQcodes.splice(index, 1);
+    tailorQcodes[tailorQcodes.length - 1].focus = true;
     this.setData({
       tailorQcodes: tailorQcodes
-    })
-  },
-  scanTailor:function(){
-    var obj = this;
-    wx.scanCode({
-      onlyFromCamera: true,
-      success(res) {
-        var tailorQcodes = obj.data.tailorQcodes;
-        var isAdd = true;
-        for (var i = 0; i < tailorQcodes.length; i++) {
-          if (tailorQcodes[i].tailorQcodeID == res.result) {
-            isAdd = false;
-            wx.showToast({
-              title: '扫描裁片重复',
-              icon: 'none',
-              duration: 1000
-            })
-            break;
-          }
-        }
-        if (isAdd) {
-          wx.request({
-            url: app.globalData.backUrl + '/erp/minigettailorbytailorqcodeid',
-            data: {
-              'tailorQcodeID': res.result
-            },
-            method: 'GET',
-            header: {
-              'content-type': 'application/x-www-form-urlencoded' // 默认值
-            },
-            success: function (response) {
-              if (response.statusCode == 200) {
-                if (response.data.tailor) {
-                  for (var i = 0; i < tailorQcodes.length;i++) {
-                    if (tailorQcodes[i].mark=='red') {
-                      continue;
-                    } else if (tailorQcodes[i].colorName != response.data.tailor.colorName || tailorQcodes[i].sizeName != response.data.tailor.sizeName){
-                      response.data.tailor.mark = 'yellow';
-                    }
-                    break;
-                  }
-                  tailorQcodes.push(response.data.tailor);
-                }else {
-                  var tmp = {};
-                  tmp.tailorQcodeID = res.result;
-                  tmp.mark = 'red';
-                  tailorQcodes.push(tmp);
-                } 
-                obj.setData({
-                  tailorQcodes: tailorQcodes
-                })            
-              }else {
-                wx.showToast({
-                  title: "服务器发生错误",
-                  image: '../../static/img/error.png',
-                  duration: 1000,
-                })
-              }
-            },
-            fail: function (res) {
-              wx.showToast({
-                title: "服务连接失败",
-                image: '../../static/img/error.png',
-                duration: 1000,
-              })
-            }
-          });
-        }
-        
-      }
     })
   },
   inStore: function (e) {
@@ -210,14 +139,27 @@ Page({
         icon: 'none',
         duration: 1000
       })
+      obj.setData({
+        storeFocus: true,
+      })
       return false;
     }
-    var tailorQcodes = this.data.tailorQcodes
-    if (tailorQcodes.length == 0 || tailorQcodes.length==1 ) {
+    var tailorQcodes = this.data.tailorQcodes;
+    var tmptailorQcodes = [];
+    for (var i=0;i<tailorQcodes.length;i++) {
+      if (tailorQcodes[i].srcUrl != '../../static/img/fail.png') {
+        tmptailorQcodes.push(tailorQcodes[i]);
+      }
+    }
+    if (tmptailorQcodes.length == 0 || tmptailorQcodes.length==1 ) {
       wx.showToast({
         title: '请扫描裁片二维码',
         icon: 'none',
         duration: 1000
+      })
+      tailorQcodes[tailorQcodes.length - 1].focus = true;
+      obj.setData({
+        tailorQcodes: tailorQcodes
       })
       return false;
     }
@@ -241,12 +183,12 @@ Page({
           }else {
             wx.showModal({
               title: '提示',
-              content: '共有' + (tailorQcodes.length-1) +'扎，确认入库吗?',
+              content: '共有' + (tmptailorQcodes.length-1) +'扎，确认入库吗?',
               success: function (sm) {
                 if (sm.confirm) {
                   var embInStoreJson = {};
                   embInStoreJson.cutStoreLocation = obj.data.cutStoreQcode;
-                  embInStoreJson.tailors = tailorQcodes;
+                  embInStoreJson.tailors = tmptailorQcodes;
                   wx.request({
                     url: app.globalData.backUrl + '/erp/miniinstoresingle',
                     data: {
@@ -267,6 +209,8 @@ Page({
                           obj.setData({
                             tailorQcodes: [],
 							              cutStoreQcode: '',
+                            storeFocus: true,
+                            storeDisabled: false
                           })
                         }else if(res.data==1){
                           wx.showToast({

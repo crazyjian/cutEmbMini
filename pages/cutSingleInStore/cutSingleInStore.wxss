@@ -165,14 +165,14 @@ label {
 
 .searchItem {
   border-radius:10rpx;
-  width:65%;
-  height:62rpx;
+  width:75%;
+  height:70rpx;
   background:#fff;
   display: flex;
 }
 
 .searchItemImg {
-  width:10%;
+  width:9%;
   display:inline-block;
 }
 
