@@ -1,7 +1,3 @@
 {
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "navigate-title": "../../../components/navbar/index"
-  },
-  "navigationBarBackgroundColor": "#6495ED"
+  "navigationBarTitleText": "衣胚单扎出库"
 }

@@ -12,17 +12,17 @@ Page({
   onLoad: function (option) {
   },
   cutInStore: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../cutInStore/cutInStore"
     })
   },
   cutOutStore: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../cutOutStore/cutOutStore"
     })
   },
   cutChangeStore:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../cutChangeStore/cutChangeStore"
     })
   },
@@ -93,17 +93,17 @@ Page({
     })
   },
   embInStore:function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../embInStore/embInStore"
     })
   },
   embOutStore: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../embOutStore/embOutStore"
     })
   },
   embSingleOutStore: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../embSingleOutStore/embSingleOutStore"
     })
   },
@@ -133,7 +133,7 @@ Page({
     })
   },
   cutSingleInStore:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: "../cutSingleInStore/cutSingleInStore"
     })
   }

@@ -1,4 +1,3 @@
-<navigate-title title="衣胚单扎出库" />
 <view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
   <view class="section">
     <view class='searchItem'>
