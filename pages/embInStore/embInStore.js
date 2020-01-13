@@ -133,7 +133,7 @@ Page({
   inStore: function (e) {
     var obj = this;
     var cutStoreQcode = this.data.cutStoreQcode
-    if (!cutStoreQcode) {
+    if (!cutStoreQcode && cutStoreQcode=='') {
       wx.showToast({
         title: '请扫描货架二维码',
         icon: 'none',

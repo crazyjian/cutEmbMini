@@ -133,7 +133,7 @@ Page({
   inStore: function (e) {
     var obj = this;
     var cutStoreQcode = this.data.cutStoreQcode
-    if (!cutStoreQcode) {
+    if (!cutStoreQcode && cutStoreQcode=='') {
       wx.showToast({
         title: '请扫描货架二维码',
         icon: 'none',
@@ -202,8 +202,8 @@ Page({
                       if (res.statusCode == 200) {
                         if(res.data==0) {
                           wx.showToast({
-                            title: "入库成功",
-                            icon: 'success',
+                            title: "入库失败",
+                            image: '../../static/img/error.png',
                             duration: 1000
                           })
                           obj.setData({
@@ -212,16 +212,10 @@ Page({
                             storeFocus: true,
                             storeDisabled: false
                           })
-                        }else if(res.data==1){
+                        }else {
                           wx.showToast({
-                            title: "入库失败",
-                            image: '../../static/img/error.png',
-                            duration: 1000
-                          })
-                        }else if(res.data==2) {
-                          wx.showToast({
-                            title: "记录不存在或不用入库",
-                            icon: 'none',
+                            title: "入库成功",
+                            icon: 'success',
                             duration: 1000
                           })
                         }
