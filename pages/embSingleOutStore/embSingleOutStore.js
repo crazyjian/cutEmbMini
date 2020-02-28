@@ -140,7 +140,7 @@ Page({
                     duration: 3000,
                   })
                   obj.setData({
-                    tailorQcode: '',
+                    tailorQcodes: [],
                     index: 0,
                     isShowTailor: false
                   })

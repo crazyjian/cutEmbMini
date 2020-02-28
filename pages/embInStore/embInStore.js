@@ -183,7 +183,7 @@ Page({
                   embInStoreJson.embStoreLocation = obj.data.cutStoreQcode;
                   embInStoreJson.tailors = tmptailorQcodes;
                   wx.request({
-                    url: app.globalData.backUrl + '/erp/miniembinstore',
+                    url: app.globalData.backUrl + '/erp/miniembinstorescaner',
                     data: {
                       'embInStoreJson': JSON.stringify(embInStoreJson)
                     },
