@@ -15,9 +15,9 @@
     "pages/embSingleStore/embSingleStore",
     "pages/embOutSum/embOutSum",
     "pages/embOutDetail/embOutDetail",
-    "pages/cutStorageState/cutStorageState",
     "pages/embStorageState/embStorageState",
-    "pages/cutSingleInStore/cutSingleInStore"
+    "pages/cutSingleInStore/cutSingleInStore",
+    "pages/cutStorageState/cutStorageState"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,6 +36,12 @@
         "iconPath": "static/img/operate.png",
         "pagePath": "pages/emb/emb",
         "text": "操作"
+      },
+      {
+        "selectedIconPath": "static/img/storeStatus-selected.png",
+        "iconPath": "static/img/storeStatus.png",
+        "pagePath": "pages/cutStorageState/cutStorageState",
+        "text": "库存"
       },
       {
         "selectedIconPath": "static/img/people-bottom-selected.png",

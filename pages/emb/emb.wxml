@@ -17,10 +17,10 @@
       </view>
     </view>
     <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
-      <view class="flex-item">
+      <!-- <view class="flex-item">
         <image class='itemImg' src='../../static/img/status1.png' mode="aspectFit" bindtap='cutStorageState'></image>
         <text>库存状态</text>
-      </view>
+      </view> -->
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/singleStore1.png' mode="aspectFit" bindtap='cutSingleStore'></image>
         <text>单款库存</text>
@@ -29,8 +29,6 @@
         <image class='itemImg' src='../../static/img/match.png' mode="aspectFit" bindtap='cutMatch'></image>
         <text>花片配对</text>
       </view>
-    </view>
-    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/changeStore.png' mode="aspectFit" bindtap='cutChangeStore'></image>
         <text>裁片调库</text>
@@ -52,10 +50,10 @@
       </view>
     </view>
     <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
-      <view class="flex-item">
+      <!-- <view class="flex-item">
         <image class='itemImg' src='../../static/img/status2.png' mode="aspectFit" bindtap='embStorageState'></image>
         <text>库存状态</text>
-      </view>
+      </view> -->
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/singleStore2.png' mode="aspectFit" bindtap='embSingleStore'></image>
         <text>单款库存</text>
@@ -64,8 +62,6 @@
         <image class='itemImg' src='../../static/img/phase.png' mode="aspectFit" bindtap='embOutDetail'></image>
         <text>阶段出库</text>
       </view>
-    </view>
-    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
       <view class="flex-item">
         <image class='itemImg' src='../../static/img/outSum.png' mode="aspectFit" bindtap='embOutSum'></image>
         <text>出库汇总</text>

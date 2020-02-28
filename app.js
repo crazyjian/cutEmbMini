@@ -42,7 +42,7 @@ App({
   globalData: {
     userInfo: null,
     employeeNumber:1,
-    backUrl:"",
+    backUrl: "",
     factoryName:"",
     statusBarHeight:0,
     titleBarHeight:0,
