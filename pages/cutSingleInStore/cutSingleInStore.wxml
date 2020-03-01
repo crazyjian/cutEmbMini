@@ -3,7 +3,10 @@
     <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx">
       <view class='searchItem'>
         <view class='searchItemImg'>
-          <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit"></image>
+          <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit" bindtap="scanCutStoreQcode"></image>
+        </view>
+        <view class='searchItemImg'>
+          <image src='../../static/img/line.png' style='display:inline' mode="aspectFit"></image>
         </view>
         <textarea class='searchItemInput' placeholder='{{placeholder}}' style='width:90%;font-size: 58rpx;' value='{{cutStoreQcode}}' placeholder-style='font-size:52rpx' focus='{{storeFocus}}' bindinput='changeCutStoreQcode' disabled='{{storeDisabled}}' show-confirm-bar='false'/>
       </view>
@@ -12,7 +15,15 @@
     <block wx:for="{{tailorQcodes}}" wx:key="tailorQcodeID">
       <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx;height:62rpx;">
         <view style="width:5%">{{index+1}}</view>
-        <textarea style='width:65%;background:#fff;height:100%;font-size: 52rpx;' focus='{{item.focus}}' bindinput='tailorMoveCursor' value='{{item.tailorQcodeID}}' disabled='{{item.disabled}}' data-index='{{index}}' show-confirm-bar='false' placeholder='扫描裁片二维码'/> 
+        <view class='searchItem' style='width:65%'>
+          <view class='searchItemImg'>
+            <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit" bindtap="scanTailorQcode" data-index='{{index}}'></image>
+          </view>
+          <view class='searchItemImg'>
+            <image src='../../static/img/line.png' style='display:inline' mode="aspectFit"></image>
+          </view>
+          <textarea style='width:65%;background:#fff;height:100%;font-size: 52rpx;' focus='{{item.focus}}' bindinput='tailorMoveCursor' value='{{item.tailorQcodeID}}' disabled='{{item.disabled}}' data-index='{{index}}' show-confirm-bar='false' placeholder='扫描裁片码'/>
+        </view> 
         <image class='itemImg' src='{{item.srcUrl}}' mode="aspectFit" style="width:15%;height: 100%;" wx:if="{{item.imgShow}}"></image>
         <image class='itemImg' src='../../static/img/delete.png' mode="aspectFit" bindtap='delTailorQcode' data-index='{{index}}' style="width:15%;height: 100%;" wx:if="{{item.delShow}}"></image>
       </view>
