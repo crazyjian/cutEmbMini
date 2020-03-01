@@ -341,17 +341,17 @@ Page({
                             image: '../../static/img/error.png',
                             duration: 1000
                           })
-                          obj.setData({
-                            tailorQcodes: [],
-							              cutStoreQcode: '',
-                            storeFocus: true,
-                            storeDisabled: false
-                          })
                         }else {
                           wx.showToast({
                             title: "入库成功",
                             icon: 'success',
                             duration: 1000
+                          })
+                          obj.setData({
+                            tailorQcodes: [],
+                            cutStoreQcode: '',
+                            storeFocus: true,
+                            storeDisabled: false
                           })
                         }
                       }
