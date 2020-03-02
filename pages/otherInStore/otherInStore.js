@@ -3,11 +3,11 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    cutStoreQcode:'',
+    cutStoreQcode: '',
     tailorQcodes: [],
-    placeholder:'扫描货架二维码',
-    storeFocus:true,
-    storeDisabled:false,
+    placeholder: '扫描货架二维码',
+    storeFocus: true,
+    storeDisabled: false,
   },
   onLoad: function (option) {
     
@@ -51,21 +51,21 @@ Page({
       }
     })
   },
-  changeCutStoreQcode:function(e) {
+  changeCutStoreQcode: function (e) {
     var cutStoreQcode = e.detail.value;
-    if(e.detail.keyCode == 10) {
-      cutStoreQcode = cutStoreQcode.replace('\n','');
+    if (e.detail.keyCode == 10) {
+      cutStoreQcode = cutStoreQcode.replace('\n', '');
       this.setData({
-        storeFocus:false,
-        storeDisabled:true
+        storeFocus: false,
+        storeDisabled: true
       });
       if (this.data.tailorQcodes.length > 0) {
-        var tailorQcode = "tailorQcodes[" + (this.data.tailorQcodes.length - 1) +"].focus";
+        var tailorQcode = "tailorQcodes[" + (this.data.tailorQcodes.length - 1) + "].focus";
         this.setData({
-          [tailorQcode]:true
+          [tailorQcode]: true
         })
-      }else {
-        var tailorQcodes = [{ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl':'../../static/img/success1.png'}];
+      } else {
+        var tailorQcodes = [{ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' }];
         this.setData({
           tailorQcodes: tailorQcodes
         })
@@ -75,14 +75,14 @@ Page({
       cutStoreQcode: cutStoreQcode
     })
   },
-  clearCutStoreQcode:function() {
+  clearCutStoreQcode: function () {
     this.setData({
-      storeDisabled:false,
+      storeDisabled: false,
       cutStoreQcode: '',
-      storeFocus:true
+      storeFocus: true
     })
   },
-  scanTailorQcode:function(e) {
+  scanTailorQcode: function (e) {
     var obj = this;
     var index = e.currentTarget.dataset.index;
     var tailorQcode = "";
@@ -112,7 +112,7 @@ Page({
         }
         if (isAdd) {
           wx.request({
-            url: app.globalData.backUrl + '/erp/minigettailorbytailorqcodeid',
+            url: app.globalData.backUrl + '/erp/minigetothertailorbytailorqcodeid',
             data: {
               'tailorQcodeID': tailorQcode
             },
@@ -122,17 +122,17 @@ Page({
             },
             success: function (response) {
               if (response.statusCode == 200) {
-                if (response.data.tailor) {
+                if (response.data.otherTailor) {
                   for (var i = 0; i < tailorQcodes.length - 1; i++) {
                     if (tailorQcodes[i].srcUrl == '../../static/img/fail.png') {
                       continue;
-                    } else if (tailorQcodes[i].colorName != response.data.tailor.colorName || tailorQcodes[i].sizeName != response.data.tailor.sizeName) {
+                    } else if (tailorQcodes[i].colorName != response.data.otherTailor.colorName || tailorQcodes[i].sizeName != response.data.otherTailor.sizeName) {
                       tailorQcodes[index].srcUrl = '../../static/img/warn.png';
                     }
                     break;
                   }
-                  tailorQcodes[index].colorName = response.data.tailor.colorName;
-                  tailorQcodes[index].sizeName = response.data.tailor.sizeName;
+                  tailorQcodes[index].colorName = response.data.otherTailor.colorName;
+                  tailorQcodes[index].sizeName = response.data.otherTailor.sizeName;
                 } else {
                   tailorQcodes[index].srcUrl = '../../static/img/fail.png';
                 }
@@ -143,7 +143,7 @@ Page({
                 })
               } else {
                 wx.showToast({
-                  title: "服务器发生错误",
+                  title: "服务发生错误",
                   image: '../../static/img/error.png',
                   duration: 1000,
                 })
@@ -200,7 +200,7 @@ Page({
       }
     })
   },
-  tailorMoveCursor:function(e) {
+  tailorMoveCursor: function (e) {
     var obj = this;
     var index = e.currentTarget.dataset.index;
     var tailorQcode = e.detail.value;
@@ -209,8 +209,8 @@ Page({
       tailorQcode = tailorQcode.replace('\n', '');
       var tailorQcodes = this.data.tailorQcodes;
       var isAdd = true;
-      for (var i = 0; i < tailorQcodes.length;i++) {
-        if (tailorQcodes[i].tailorQcodeID==tailorQcode && index!=i) {
+      for (var i = 0; i < tailorQcodes.length; i++) {
+        if (tailorQcodes[i].tailorQcodeID == tailorQcode && index != i) {
           isAdd = false;
           wx.showToast({
             title: '扫描裁片重复',
@@ -226,7 +226,7 @@ Page({
       }
       if (isAdd) {
         wx.request({
-          url: app.globalData.backUrl + '/erp/minigettailorbytailorqcodeid',
+          url: app.globalData.backUrl + '/erp/minigetothertailorbytailorqcodeid',
           data: {
             'tailorQcodeID': tailorQcode
           },
@@ -237,16 +237,16 @@ Page({
           success: function (response) {
             if (response.statusCode == 200) {
               if (response.data.tailor) {
-                for (var i = 0; i < tailorQcodes.length-1; i++) {
+                for (var i = 0; i < tailorQcodes.length - 1; i++) {
                   if (tailorQcodes[i].srcUrl == '../../static/img/fail.png') {
                     continue;
-                  } else if (tailorQcodes[i].colorName != response.data.tailor.colorName || tailorQcodes[i].sizeName != response.data.tailor.sizeName) {
+                  } else if (tailorQcodes[i].colorName != response.data.otherTailor.colorName || tailorQcodes[i].sizeName != response.data.otherTailor.sizeName) {
                     tailorQcodes[index].srcUrl = '../../static/img/warn.png';
                   }
                   break;
                 }
-                tailorQcodes[index].colorName = response.data.tailor.colorName;
-                tailorQcodes[index].sizeName = response.data.tailor.sizeName;
+                tailorQcodes[index].colorName = response.data.otherTailor.colorName;
+                tailorQcodes[index].sizeName = response.data.otherTailor.sizeName;
               } else {
                 tailorQcodes[index].srcUrl = '../../static/img/fail.png';
               }
@@ -270,7 +270,7 @@ Page({
             })
           }
         });
-      }else {
+      } else {
         tailorQcode = '';
       }
     }
@@ -278,7 +278,7 @@ Page({
       [tailor]: tailorQcode
     })
   },
-  delTailorQcode:function(e){
+  delTailorQcode: function (e) {
     var index = e.currentTarget.dataset.index;
     var tailorQcodes = this.data.tailorQcodes;
     tailorQcodes.splice(index, 1);
@@ -296,34 +296,27 @@ Page({
         icon: 'none',
         duration: 1000
       })
-      obj.setData({
-        storeFocus: true,
-      })
       return false;
     }
     var tailorQcodes = this.data.tailorQcodes;
     var tmptailorQcodes = [];
-    for (var i=0;i<tailorQcodes.length;i++) {
-      if (tailorQcodes[i].srcUrl != '../../static/img/fail.png') {
-        tmptailorQcodes.push(tailorQcodes[i]);
+    for (var i = 0; i < tailorQcodes.length; i++) {
+      if (tailorQcodes[i].srcUrl != '../../static/img/fail.png' && tailorQcodes[i].tailorQcodeID!="") {
+        tmptailorQcodes.push(tailorQcodes[i].tailorQcodeID);
       }
     }
-    if (tmptailorQcodes.length == 0 || tmptailorQcodes.length==1 ) {
+    if (tmptailorQcodes.length == 0) {
       wx.showToast({
         title: '请扫描裁片二维码',
         icon: 'none',
         duration: 1000
       })
-      tailorQcodes[tailorQcodes.length - 1].focus = true;
-      obj.setData({
-        tailorQcodes: tailorQcodes
-      })
       return false;
     }
     wx.request({
-      url: app.globalData.backUrl + '/erp/minigetstorehousebylocation',
+      url: app.globalData.backUrl + '/erp/minigetotherstorebylocation',
       data: {
-        'storehouseLocation': obj.data.cutStoreQcode
+        'otherStoreLocation': obj.data.cutStoreQcode
       },
       method: 'GET',
       header: {
@@ -331,25 +324,25 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == 200) {
-          if(res.data == 1) {
+          if (res.data == 1) {
             wx.showToast({
               title: "您扫描的货架不存在",
               icon: 'none',
               duration: 1000,
             })
-          }else {
+          } else {
             wx.showModal({
               title: '提示',
-              content: '共有' + (tmptailorQcodes.length-1) +'扎，确认入库吗?',
+              content: '共有' + (tmptailorQcodes.length) + '扎，确认入库吗?',
               success: function (sm) {
                 if (sm.confirm) {
-                  var embInStoreJson = {};
-                  embInStoreJson.cutStoreLocation = obj.data.cutStoreQcode;
-                  embInStoreJson.tailors = tmptailorQcodes;
+                  var otherInStoreJson = {};
+                  otherInStoreJson.otherStoreLocation = obj.data.cutStoreQcode;
+                  otherInStoreJson.tailorQcode = tmptailorQcodes;
                   wx.request({
-                    url: app.globalData.backUrl + '/erp/miniinstoresingle',
+                    url: app.globalData.backUrl + '/erp/miniotherinstore',
                     data: {
-                      'inStoreJson': JSON.stringify(embInStoreJson)
+                      'otherInStoreJson': JSON.stringify(otherInStoreJson)
                     },
                     method: 'POST',
                     header: {
@@ -357,13 +350,7 @@ Page({
                     },
                     success: function (res) {
                       if (res.statusCode == 200) {
-                        if(res.data==0) {
-                          wx.showToast({
-                            title: "入库失败",
-                            image: '../../static/img/error.png',
-                            duration: 1000
-                          })
-                        }else {
+                        if (res.data == 0) {
                           wx.showToast({
                             title: "入库成功",
                             icon: 'success',
@@ -374,6 +361,18 @@ Page({
                             cutStoreQcode: '',
                             storeFocus: true,
                             storeDisabled: false
+                          })
+                        } else if (res.data == 1) {
+                          wx.showToast({
+                            title: "入库失败",
+                            image: '../../static/img/error.png',
+                            duration: 1000
+                          })
+                        } else if (res.data == 2) {
+                          wx.showToast({
+                            title: "记录不存在或不用入库",
+                            icon: 'none',
+                            duration: 1000
                           })
                         }
                       }

@@ -1,0 +1,32 @@
+<navigate-title title="衣胚批量出库" />
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
+  <view class="section">
+    <view class='searchItem'>
+      <text>组名</text>
+      <picker style="margin-left:20rpx;width:70%" bindchange="bindPickerChange" value="{{index}}" range="{{groupList}}">
+        <view class="picker">
+          {{groupList[index]}}
+        </view>
+      </picker>
+    </view>
+    <block wx:for="{{tailorQcodes}}" wx:key="tailorQcodeID">
+      <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx;height:62rpx;">
+        <view style="width:5%">{{index+1}}</view>
+        <view class='searchItemQcode'>
+          <view class='searchItemImg'>
+            <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit" bindtap="scanTailorQcode" data-index='{{index}}'></image>
+          </view>
+          <view class='searchItemImg'>
+            <image src='../../static/img/line.png' style='display:inline' mode="aspectFit"></image>
+          </view>
+        <textarea style='width:65%;background:#fff;height:100%;font-size: 52rpx;' focus='{{item.focus}}' bindinput='tailorMoveCursor' value='{{item.tailorQcodeID}}' disabled='{{item.disabled}}' data-index='{{index}}' show-confirm-bar='false' placeholder='扫描裁片码'/> 
+        </view>
+        <image class='itemImg' src='{{item.srcUrl}}' mode="aspectFit" style="width:15%;height: 100%;" wx:if="{{item.imgShow}}"></image>
+        <image class='itemImg' src='../../static/img/delete.png' mode="aspectFit" bindtap='delTailorQcode' data-index='{{index}}' style="width:15%;height: 100%;" wx:if="{{item.delShow}}"></image>
+      </view>
+    </block>
+    <view class='button' style="margin-top:100rpx">
+      <button class='btn' bindtap='outStore'>出库</button>
+    </view>
+  </view>
+</view>

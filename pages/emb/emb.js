@@ -136,5 +136,20 @@ Page({
     wx.navigateTo({
       url: "../cutSingleInStore/cutSingleInStore"
     })
+  },
+  otherOutStore: function () {
+    wx.navigateTo({
+      url: "../otherOutStore/otherOutStore"
+    })
+  },
+  otherInStore: function () {
+    wx.navigateTo({
+      url: "../otherInStore/otherInStore"
+    })
+  },
+  otherStoreSearch: function () {
+    wx.navigateTo({
+      url: "../otherStoreSearch/otherStoreSearch"
+    })
   }
 })

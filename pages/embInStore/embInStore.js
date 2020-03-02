@@ -147,6 +147,15 @@ Page({
                   image: '../../static/img/error.png',
                   duration: 1000,
                 })
+                var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
+                var focus = "tailorQcodes[" + index + "].focus";
+                var disabled = "tailorQcodes[" + index + "].disabled";
+                tailorQcode = '';
+                obj.setData({
+                  [tailor]: tailorQcode,
+                  [focus]: true,
+                  [disabled]: false
+                })
               }
             },
             fail: function (res) {
@@ -155,15 +164,26 @@ Page({
                 image: '../../static/img/error.png',
                 duration: 1000,
               })
+              var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
+              var focus = "tailorQcodes[" + index + "].focus";
+              var disabled = "tailorQcodes[" + index + "].disabled";
+              tailorQcode = '';
+              obj.setData({
+                [tailor]: tailorQcode,
+                [focus]: true,
+                [disabled]: false
+              })
             }
           });
         } else {
           var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
           var focus = "tailorQcodes[" + index + "].focus";
+          var disabled = "tailorQcodes[" + index + "].disabled";
           tailorQcode = '';
           obj.setData({
             [tailor]: tailorQcode,
-            [focus]: true
+            [focus]: true,
+            [disabled]: false
           })
         }
       },

@@ -34,6 +34,20 @@
         <text>裁片调库</text>
       </view>
     </view>
+    <view class="flex-wrp" style="flex-direction:row;margin-top:40rpx">
+      <view class="flex-item">
+        <image class='itemImg' src='../../static/img/otherInStore.png' mode="aspectFit" bindtap='otherInStore'></image>
+        <text>下栏入库</text>
+      </view>
+      <view class="flex-item">
+        <image class='itemImg' src='../../static/img/otherOutStore.png' mode="aspectFit" bindtap='otherOutStore'></image>
+        <text>下栏出库</text>
+      </view>
+      <view class="flex-item">
+        <image class='itemImg' src='../../static/img/otherSearch.png' mode="aspectFit" bindtap='otherStoreSearch'></image>
+        <text>下栏查询</text>
+      </view>
+    </view>
     <view class="title" style="color:#32CD32;padding-top:80rpx">衣胚超市</view>
     <view class="flex-wrp" style="flex-direction:row;">
       <view class="flex-item">
