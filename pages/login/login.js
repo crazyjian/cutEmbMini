@@ -80,7 +80,7 @@ Page({
       app.globalData.backUrl = "https://cy.jingyiclothing.com";
       app.globalData.factoryName = "中山诚远制衣";
     } else {
-      app.globalData.backUrl = "http://192.168.2.124:8080";
+      app.globalData.backUrl = "http://192.168.10.124:8080";
       app.globalData.factoryName = "";
     }
     var employeeNumber = e.detail.value.employeeNumber; // 获取当前表单元素输入框内容
