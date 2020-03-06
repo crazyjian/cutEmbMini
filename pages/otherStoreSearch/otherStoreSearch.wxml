@@ -58,7 +58,7 @@
         <view class="th" style='width:20%'>数量</view>
         <view class="th" style='width:20%'>部位</view>
         <view class="th" style='width:20%'>入库</view>
-        <view class="th" style='width:10%'>出库</view>
+        <view class="th" style='width:20%'>出库</view>
       </view>
       <block wx:for="{{records}}" wx:key="{{storageID}}">
         <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
@@ -70,7 +70,7 @@
           <view class="td" style='width:20%'>{{item.layerCount}}</view>
           <view class="td" style='width:20%'>{{item.partName}}</view>
           <view class="td" style='width:20%'>{{item.isIn}}</view>
-          <view class="td" style='width:10%'>{{item.isOut}}</view>
+          <view class="td" style='width:20%'>{{item.isOut}}</view>
         </view>
         <view class="tr" wx:else>
           <view class="td" style='width:10%'>{{index+1}}</view>
@@ -81,7 +81,7 @@
           <view class="td" style='width:20%'>{{item.layerCount}}</view>
           <view class="td" style='width:20%'>{{item.partName}}</view>
           <view class="td" style='width:20%'>{{item.isIn}}</view>
-          <view class="td" style='width:10%'>{{item.isOut}}</view>
+          <view class="td" style='width:20%'>{{item.isOut}}</view>
         </view>
       </block>
     </view>
