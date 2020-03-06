@@ -1,0 +1,140 @@
+page {
+  width:100%;
+  height:100%;
+}
+
+.section {
+  width:100%;
+  height:100%;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction:column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+}
+
+.textView {
+  background-color: white;
+  border-radius: 25rpx;
+  border: 1rpx solid rgb(235, 232, 232);
+}
+
+.icon {
+  width:100rpx;
+  border-radius: 15rpx;
+  text-align: center;
+}
+
+.largeTitle {
+  /* font-weight:bold; */
+  font-size: 40rpx;
+  text-align: center;
+}
+
+.toast-box {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+ 
+.toastbg {
+    opacity: 0.7;
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+}
+ 
+.showToast {
+    position: absolute;
+    opacity: 1;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+ 
+.toast-title {
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #6495ED;
+    color: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    border-top-right-radius: 16rpx;
+    border-top-left-radius: 16rpx;
+    justify-content: space-between;
+    display: flex;
+}
+ 
+.toast-main {
+    /* padding-top: 2vh; */
+    /* padding-bottom: 2vh; */
+    background-color: white;
+    text-align: center;
+}
+ 
+.toast-button {
+    display: flex;
+}
+ 
+.button1 {
+    width: 100%;
+}
+ 
+.button1 button {
+    width: 100%;
+    background-color: #6495ED;
+    color: white;
+    border-radius: 0px;
+    border-bottom-left-radius: 16rpx;
+    border-bottom-right-radius: 16rpx;
+}
+
+.table {
+  border-top: 1px solid darkgray;
+  border-right: 1px solid darkgray;
+  border-bottom: 1px solid darkgray;
+  width: 1200rpx;
+  /* overflow-x: auto; */
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 3rem;
+  align-items: center;
+}
+.td {
+    width:40%;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(209, 206, 206, 0.87);
+    border-left: 1px solid rgba(209, 206, 206, 0.87);
+}
+.bg-w{
+  background: white;
+}
+.bg-g{
+  background: #f9f9f9;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  font-weight: bold;
+  border-left: 1px solid rgba(209, 206, 206, 0.87);
+}

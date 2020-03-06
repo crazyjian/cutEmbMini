@@ -1,0 +1,34 @@
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+  <view class="flex-col">
+    <view class="flex-row" style="justify-content:space-between">
+      <view style="font-weight:bold;">库存实时概况</view>
+      <view class="icon" style="background-color:rgb(45,202,147)"> 空仓
+      </view>
+      <view class="icon" style="background-color:rgb(217,202,23)">半仓
+      </view>
+      <view class="icon" style="background-color:rgb(206,39,60)">满仓
+      </view>
+    </view>
+    
+    <block wx:for="{{rows}}" wx:for-index="idx">
+     <scroll-view scroll-x="true" class="textView" style="margin-top:30rpx;"> 
+      <view class="flex-row largeTitle">
+        <view class="flex-col" style="margin-left: 20rpx;">
+          {{item}}
+        </view>
+        <block wx:for="{{records[idx]}}" wx:for-item="itemName">
+          <view class="flex-col" style="margin-left: 20rpx;">
+            <view>{{itemName.col}}</view>
+            <view wx:for="{{itemName.floor}}" wx:for-item="value" wx:for-index="colKey">
+              <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.statusList[value]}}">{{itemName.sumList[value]}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+      </scroll-view>
+    </block>
+  </view>
+  </view>
+</view>

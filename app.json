@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/person/person",
+    "pages/password/password",
+    "pages/employee/employee",
+    "pages/emb/emb",
+    "pages/cutInStore/cutInStore",
+    "pages/cutOutStore/cutOutStore",
+    "pages/cutChangeStore/cutChangeStore",
+    "pages/cutSingleStore/cutSingleStore",
+    "pages/embInStore/embInStore",
+    "pages/embOutStore/embOutStore",
+    "pages/embSingleOutStore/embSingleOutStore",
+    "pages/embSingleStore/embSingleStore",
+    "pages/embOutSum/embOutSum",
+    "pages/embOutDetail/embOutDetail",
+    "pages/embStorageState/embStorageState",
+    "pages/cutSingleInStore/cutSingleInStore",
+    "pages/cutStorageState/cutStorageState"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6495ED",
+    "navigationBarTitleText": "裁片衣胚",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#6495ED",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "static/img/operate-selected.png",
+        "iconPath": "static/img/operate.png",
+        "pagePath": "pages/emb/emb",
+        "text": "操作"
+      },
+      {
+        "selectedIconPath": "static/img/storeStatus-selected.png",
+        "iconPath": "static/img/storeStatus.png",
+        "pagePath": "pages/cutStorageState/cutStorageState",
+        "text": "库存"
+      },
+      {
+        "selectedIconPath": "static/img/people-bottom-selected.png",
+        "iconPath": "static/img/people-bottom.png",
+        "pagePath": "pages/person/person",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242);">
+  
+  <view class="section">
+  <view class="flex-col">
+    <view>
+      <switch checked="{{switchStatus}}" bindchange="switchChange"/>{{showStorgeName}}
+    </view>
+    <view class="flex-row" style="justify-content:space-between">
+      <view style="font-weight:bold;">库存实时概况</view>
+      <view class="icon" style="background-color:rgb(45,202,147)"> 空仓
+      </view>
+      <view class="icon" style="background-color:rgb(217,202,23)">半仓
+      </view>
+      <view class="icon" style="background-color:rgb(206,39,60)">满仓
+      </view>
+    </view>
+    
+    <block wx:for="{{rows}}" wx:for-index="idx">
+     <scroll-view scroll-x="true" class="textView" style="margin-top:30rpx;"> 
+      <view class="flex-row largeTitle">
+        <view class="flex-col" style="margin-left: 20rpx;">
+          {{item}}
+        </view>
+        <block wx:for="{{records[idx]}}" wx:for-item="itemName">
+          <view class="flex-col" style="margin-left: 20rpx;">
+            <view>{{itemName.col}}</view>
+            <view wx:for="{{itemName.floor}}" wx:for-item="value" wx:for-index="colKey">
+             <view class="icon" style="margin-bottom:10rpx;background-color:{{itemName.statusList[value]}}" bindtap="itemtap" id="{{item+'-'+itemName.col+'-'+(colKey+1)}}">{{itemName.sumList[value]}}</view>
+             </view>
+          </view>
+        </block>
+      </view>
+      </scroll-view>
+    </block>
+  </view>
+  </view>
+
+  <view class='toast-box' hidden='{{isHide}}'>
+      <view class='toastbg'></view>
+      <view class='showToast' style="height:{{windowHeight}}px;overflow: hidden">
+          <view class='toast-title'>
+              <text>库存详情</text>
+              <text>库存位置:{{location}}</text>
+          </view>
+          <view class='toast-main'>
+              <scroll-view scroll-x="true" scroll-y="true" style="height: {{windowHeight-150}}px;">  
+                <view class="table">
+                  <view class="tr bg-w">
+                    <view class="th" style='width:20%'>订单</view>
+                    <view class="th" style='width:12%'>颜色</view>
+                    <view class="th" style='width:12%'>尺码</view>
+                    <view class="th" style='width:10%'>扎号</view>
+                    <view class="th" style='width:10%'>数量</view>
+                    <view class="th" style='width:36%'>入库时间</view>
+                  </view>
+                  <block wx:for="{{detailRecords}}">
+                    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+                      <view class="td" style='width:20%'>{{item.orderName}}</view>
+                      <view class="td" style='width:12%'>{{item.colorName}}</view>
+                      <view class="td" style='width:12%'>{{item.sizeName}}</view>
+                      <view class="td" style='width:10%'>{{item.packageNumber}}</view>
+                      <view class="td" style='width:10%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:36%' wx:if="{{switchStatus}}">{{item.inStoreTime}}</view>
+                      <view class="td" style='width:36%' wx:else>{{item.embInStoreTime}}</view>
+                    </view>
+                    <view class="tr" wx:else>
+                      <view class="td" style='width:20%'>{{item.orderName}}</view>
+                      <view class="td" style='width:12%'>{{item.colorName}}</view>
+                      <view class="td" style='width:12%'>{{item.sizeName}}</view>
+                      <view class="td" style='width:10%'>{{item.packageNumber}}</view>
+                      <view class="td" style='width:10%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:36%' wx:if="{{switchStatus}}">{{item.inStoreTime}}</view>
+                      <view class="td" style='width:36%' wx:else>{{item.embInStoreTime}}</view>
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view style="display: flex;flex-direction: row;justify-content: space-around;padding-top: 30rpx;padding-bottom: 30rpx;">
+                <view>扎数：{{packageCount}}</view>
+                <view>件数：{{layerSum}}</view>
+              </view>
+          </view>
+          <view class='toast-button'>
+              <view class='button1'>
+                  <button catchtap='cancel'>关闭</button>
+              </view>
+          </view>
+      </view>
+  </view>
+
+</view>

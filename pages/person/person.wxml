@@ -1,0 +1,55 @@
+<view class="container" style="padding:50rpx;align-items:left;background-color:rgb(242, 242, 242)">
+  
+  <view class="section">
+  <view class="flex-col">
+    <view class="flex-row" style='margin-bottom:80rpx'>
+      <view style="font-weight:bold;font-size:60rpx">{{factoryName}}</view>
+    </view>
+    <view class="textView">
+      <view class="flex-row" style="justify-content:space-between">
+        <view class="flex-item" style="width:40%">
+          <open-data class='userinfo-avatar' type="userAvatarUrl"></open-data>
+        </view>
+        <view class="flex-item" style='text-align:right;width:60%' bindtap='getpieceworkemptoday'>
+          <view  class="title">{{employeeName}}</view>
+          <view  class="label">{{role}}</view>
+          <view  class="label">员工编号：{{employeeNumber}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="textView largeTitle" bindtap='showEmployeeInfo'>
+      <view class="flex-row" style="justify-content:space-between">
+        <view class="flex-item" style="flex-direction:row;width:90%">
+          <view class='searchItemImg' style='width:10%'>
+            <image src='../../static/img/info.png' style='display:inline;' mode="aspectFit"></image>
+          </view>
+          <view style='margin-left:20rpx'>员工资料</view>
+        </view>
+        <view class="flex-item" style='text-align:right;width:10%'>
+         <view class='searchItemImg' style='width:80%'>
+            <image src='../../static/img/right.png' style='display:inline;' mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="textView largeTitle" bindtap='updatePassWord'>
+      <view class="flex-row" style="justify-content:space-between">
+        <view class="flex-item" style="flex-direction:row;width:90%">
+          <view class='searchItemImg' style='width:10%'>
+            <image src='../../static/img/pw.png' style='display:inline;' mode="aspectFit"></image>
+          </view>
+          <view style='margin-left:20rpx'>修改密码</view>
+        </view>
+        <view class="flex-item" style='text-align:right;width:10%'>
+         <view class='searchItemImg' style='width:80%'>
+            <image src='../../static/img/right.png' style='display:inline;' mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='button'>
+      <button class='btn' bindtap='loginOut'>退出登录</button>
+    </view>
+  </view>
+  </view>
+</view>
