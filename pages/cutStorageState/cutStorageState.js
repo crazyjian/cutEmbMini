@@ -7,6 +7,12 @@ Page({
     rows:[],
     switchStatus:true,
     showStorgeName:'裁片',
+    isHide:true,
+    windowHeight:0,
+    location:"",
+    detailRecords:[],
+    packageCount: 0,
+    layerSum:0
   },
   onLoad: function () {
     var obj = this;
@@ -190,4 +196,64 @@ Page({
     }
     wx.stopPullDownRefresh();
   },
+  itemtap:function(e) {
+    var location = e.target.id;
+    var obj = this;
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight-40,
+      isHide:false,
+      location: location,
+    })
+    if (this.data.switchStatus) {
+      wx.request({
+        url: app.globalData.backUrl + '/erp/minigetstoragebystorehouselocation',
+        data: {
+          storehouseLocation: location
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        success: function (res) {
+          if (res.statusCode == 200 && res.data) {
+            obj.setData({
+              detailRecords: res.data.storageList,
+              packageCount: res.data.packageCount,
+              layerSum: res.data.layerSum
+            })
+          }
+        }
+      })
+    }else {
+      wx.request({
+        url: app.globalData.backUrl + '/erp/minigetembstoragebyembstorelocation',
+        data: {
+          embStoreLocation: location
+        },
+        method: 'GET',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded' // 默认值
+        },
+        success: function (res) {
+          if (res.statusCode == 200 && res.data) {
+            obj.setData({
+              detailRecords: res.data.embStorageList,
+              packageCount: res.data.packageCount,
+              layerSum: res.data.layerSum
+            })
+          }
+        }
+      })
+    }
+  },
+  cancel: function (e) {
+    this.setData({
+      isHide: true,
+      detailRecords: [],
+      location:'',
+      packageCount:0,
+      layerSum:0
+    })
+  }
+
 })
