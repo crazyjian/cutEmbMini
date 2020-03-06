@@ -103,7 +103,7 @@ page {
   border-top: 1px solid darkgray;
   border-right: 1px solid darkgray;
   border-bottom: 1px solid darkgray;
-  width: 1800rpx;
+  width: 1200rpx;
   /* overflow-x: auto; */
 }
 .tr {
