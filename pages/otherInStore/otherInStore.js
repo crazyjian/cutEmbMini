@@ -95,8 +95,8 @@ Page({
         tailorQcode = res.result;
         var tailorQcodes = obj.data.tailorQcodes;
         var isAdd = true;
-        for (var i = 0; i < tailorQcodes.length; i++) {
-          if (tailorQcodes[i].tailorQcodeID == tailorQcode && index != i) {
+        for (var i = 0; i < tailorQcodes.length-1; i++) {
+          if (tailorQcodes[i].tailorQcodeID == tailorQcode) {
             isAdd = false;
             wx.showToast({
               title: '扫描裁片重复',
@@ -105,12 +105,16 @@ Page({
             })
             break;
           }
-          tailorQcodes[i].disabled = true;
-          tailorQcodes[i].focus = false;
-          tailorQcodes[i].delShow = true;
-          tailorQcodes[i].imgShow = true;
+          // tailorQcodes[i].disabled = true;
+          // tailorQcodes[i].focus = false;
+          // tailorQcodes[i].delShow = true;
+          // tailorQcodes[i].imgShow = true;
         }
         if (isAdd) {
+          tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
+          obj.setData({
+            tailorQcodes: tailorQcodes
+          })
           wx.request({
             url: app.globalData.backUrl + '/erp/minigetothertailorbytailorqcodeid',
             data: {
@@ -123,7 +127,7 @@ Page({
             success: function (response) {
               if (response.statusCode == 200) {
                 if (response.data.otherTailor) {
-                  for (var i = 0; i < tailorQcodes.length - 1; i++) {
+                  for (var i = 0; i < tailorQcodes.length - 2; i++) {
                     if (tailorQcodes[i].srcUrl == '../../static/img/fail.png') {
                       continue;
                     } else if (tailorQcodes[i].colorName != response.data.otherTailor.colorName || tailorQcodes[i].sizeName != response.data.otherTailor.sizeName) {
@@ -136,8 +140,12 @@ Page({
                 } else {
                   tailorQcodes[index].srcUrl = '../../static/img/fail.png';
                 }
+                tailorQcodes[index].disabled = true;
+                tailorQcodes[index].focus = false;
+                tailorQcodes[index].delShow = true;
+                tailorQcodes[index].imgShow = true;
                 tailorQcodes[index].tailorQcodeID = tailorQcode;
-                tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
+                // tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
                 obj.setData({
                   tailorQcodes: tailorQcodes
                 })
@@ -147,14 +155,12 @@ Page({
                   image: '../../static/img/error.png',
                   duration: 1000,
                 })
-                var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
-                var focus = "tailorQcodes[" + index + "].focus";
-                var disabled = "tailorQcodes[" + index + "].disabled";
-                tailorQcode = '';
+                tailorQcodes.splice(tailorQcodes.length - 1, 1);
+                tailorQcodes[index].tailorQcodeID = '';
+                tailorQcodes[index].focus = true;
+                tailorQcodes[index].disabled = false;
                 obj.setData({
-                  [tailor]: tailorQcode,
-                  [focus]: true,
-                  [disabled]: false
+                  tailorQcodes: tailorQcodes
                 })
               }
             },
@@ -164,26 +170,21 @@ Page({
                 image: '../../static/img/error.png',
                 duration: 1000,
               })
-              var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
-              var focus = "tailorQcodes[" + index + "].focus";
-              var disabled = "tailorQcodes[" + index + "].disabled";
-              tailorQcode = '';
+              tailorQcodes.splice(tailorQcodes.length - 1, 1);
+              tailorQcodes[index].tailorQcodeID = '';
+              tailorQcodes[index].focus = true;
+              tailorQcodes[index].disabled = false;
               obj.setData({
-                [tailor]: tailorQcode,
-                [focus]: true,
-                [disabled]: false
+                tailorQcodes: tailorQcodes
               })
             }
           });
         } else {
-          var tailor = "tailorQcodes[" + index + "].tailorQcodeID";
-          var focus = "tailorQcodes[" + index + "].focus";
-          var disabled = "tailorQcodes[" + index + "].disabled";
-          tailorQcode = '';
+          tailorQcodes[index].tailorQcodeID = '';
+          tailorQcodes[index].focus = true;
+          tailorQcodes[index].disabled = false;
           obj.setData({
-            [tailor]: tailorQcode,
-            [focus]: true,
-            [disabled]: false
+            tailorQcodes: tailorQcodes
           })
         }
       },
@@ -209,8 +210,8 @@ Page({
       tailorQcode = tailorQcode.replace('\n', '');
       var tailorQcodes = this.data.tailorQcodes;
       var isAdd = true;
-      for (var i = 0; i < tailorQcodes.length; i++) {
-        if (tailorQcodes[i].tailorQcodeID == tailorQcode && index != i) {
+      for (var i = 0; i < tailorQcodes.length-1; i++) {
+        if (tailorQcodes[i].tailorQcodeID == tailorQcode) {
           isAdd = false;
           wx.showToast({
             title: '扫描裁片重复',
@@ -219,12 +220,16 @@ Page({
           })
           break;
         }
-        tailorQcodes[i].disabled = true;
-        tailorQcodes[i].focus = false;
-        tailorQcodes[i].delShow = true;
-        tailorQcodes[i].imgShow = true;
+        // tailorQcodes[i].disabled = true;
+        // tailorQcodes[i].focus = false;
+        // tailorQcodes[i].delShow = true;
+        // tailorQcodes[i].imgShow = true;
       }
       if (isAdd) {
+        tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
+        obj.setData({
+          tailorQcodes: tailorQcodes
+        })
         wx.request({
           url: app.globalData.backUrl + '/erp/minigetothertailorbytailorqcodeid',
           data: {
@@ -237,7 +242,7 @@ Page({
           success: function (response) {
             if (response.statusCode == 200) {
               if (response.data.tailor) {
-                for (var i = 0; i < tailorQcodes.length - 1; i++) {
+                for (var i = 0; i < tailorQcodes.length - 2; i++) {
                   if (tailorQcodes[i].srcUrl == '../../static/img/fail.png') {
                     continue;
                   } else if (tailorQcodes[i].colorName != response.data.otherTailor.colorName || tailorQcodes[i].sizeName != response.data.otherTailor.sizeName) {
@@ -250,7 +255,11 @@ Page({
               } else {
                 tailorQcodes[index].srcUrl = '../../static/img/fail.png';
               }
-              tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
+              tailorQcodes[index].disabled = true;
+              tailorQcodes[index].focus = false;
+              tailorQcodes[index].delShow = true;
+              tailorQcodes[index].imgShow = true;
+              // tailorQcodes.push({ 'tailorQcodeID': '', 'disabled': false, 'focus': true, 'delShow': false, 'imgShow': false, 'srcUrl': '../../static/img/success1.png' });
               obj.setData({
                 tailorQcodes: tailorQcodes
               })
@@ -260,6 +269,13 @@ Page({
                 image: '../../static/img/error.png',
                 duration: 1000,
               })
+              tailorQcodes.splice(tailorQcodes.length - 1, 1);
+              tailorQcodes[index].tailorQcodeID = '';
+              tailorQcodes[index].focus = true;
+              tailorQcodes[index].disabled = false;
+              obj.setData({
+                tailorQcodes: tailorQcodes
+              })
             }
           },
           fail: function (res) {
@@ -268,10 +284,22 @@ Page({
               image: '../../static/img/error.png',
               duration: 1000,
             })
+            tailorQcodes.splice(tailorQcodes.length - 1, 1);
+            tailorQcodes[index].tailorQcodeID = '';
+            tailorQcodes[index].focus = true;
+            tailorQcodes[index].disabled = false;
+            obj.setData({
+              tailorQcodes: tailorQcodes
+            })
           }
         });
       } else {
-        tailorQcode = '';
+        tailorQcodes[index].tailorQcodeID = '';
+        tailorQcodes[index].focus = true;
+        tailorQcodes[index].disabled = false;
+        obj.setData({
+          tailorQcodes: tailorQcodes
+        })
       }
     }
     this.setData({
