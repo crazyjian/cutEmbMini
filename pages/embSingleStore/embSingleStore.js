@@ -12,7 +12,13 @@ Page({
     s_index: 0,
     sizeNames: ["全部"],
     orderNames: ["请选择款号"],
-    o_index: 0
+    o_index: 0,
+    isHide: true,
+    windowHeight: 0,
+    detailRecords: [],
+    packageCount: 0,
+    layerSum: 0,
+    location: ""
   },
   onLoad: function (option) {
   },
@@ -199,5 +205,40 @@ Page({
       s_index: e.detail.value
     })
   },
+  recordDetail: function (e) {
+    var obj = this;
+    var params = e.currentTarget.dataset.value;
+    this.setData({
+      windowHeight: wx.getSystemInfoSync().windowHeight - 40,
+      isHide: false
+    })
+    wx.request({
+      url: app.globalData.backUrl + '/erp/minigetembstoragebyordercolorsizelocation',
+      data: params,
+      method: 'GET',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {
+        if (res.statusCode == 200 && res.data) {
+          obj.setData({
+            detailRecords: res.data.embStorageList,
+            packageCount: res.data.packageCount,
+            layerSum: res.data.layerSum,
+            location: params.embStoreLocation
+          })
+        }
+      }
+    })
+  },
+  cancel: function (e) {
+    this.setData({
+      isHide: true,
+      detailRecords: [],
+      packageCount: 0,
+      layerSum: 0,
+      location: ""
+    })
+  }
 
 })

@@ -48,13 +48,13 @@
         <view class="th" style='width:25%'>位置</view>
       </view>
       <block wx:for="{{records}}" wx:key="{{orderName}}">
-        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}" bindtap="recordDetail" data-value="{{item}}">
           <view class="td" style='width:25%'>{{item.colorName}}</view>
           <view class="td" style='width:25%'>{{item.sizeName}}</view>
           <view class="td" style='width:25%'>{{item.embStorageCount}}</view>
           <view class="td" style='width:25%'>{{item.embStoreLocation}}</view>
         </view>
-        <view class="tr" wx:else>
+        <view class="tr" wx:else bindtap="recordDetail" data-value="{{item}}">
           <view class="td" style='width:25%'>{{item.colorName}}</view>
           <view class="td" style='width:25%'>{{item.sizeName}}</view>
           <view class="td" style='width:25%'>{{item.embStorageCount}}</view>
@@ -63,5 +63,56 @@
       </block>
     </view>
     </scroll-view>
+  </view>
+
+  <view class='toast-box' hidden='{{isHide}}'>
+      <view class='toastbg'></view>
+      <view class='showToast' style="height:{{windowHeight}}px;overflow: hidden">
+          <view class='toast-title'>
+              <text>详情</text>
+              <text>库存位置:{{location}}</text>
+          </view>
+          <view class='toast-main'>
+              <scroll-view scroll-x="true" scroll-y="true" style="height: {{windowHeight-150}}px;">  
+                <view class="table" style="width:1000rpx">
+                  <view class="tr bg-w">
+                    <view class="th" style='width:20%'>订单</view>
+                    <view class="th" style='width:16%'>颜色</view>
+                    <view class="th" style='width:16%'>尺码</view>
+                    <view class="th" style='width:16%'>扎号</view>
+                    <view class="th" style='width:16%'>数量</view>
+                    <view class="th" style='width:16%'>床号</view>
+                  </view>
+                  <block wx:for="{{detailRecords}}">
+                    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+                      <view class="td" style='width:20%'>{{item.orderName}}</view>
+                      <view class="td" style='width:16%'>{{item.colorName}}</view>
+                      <view class="td" style='width:16%'>{{item.sizeName}}</view>
+                      <view class="td" style='width:16%'>{{item.packageNumber}}</view>
+                      <view class="td" style='width:16%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:16%'>{{item.bedNumber}}</view>
+                    </view>
+                    <view class="tr" wx:else>
+                      <view class="td" style='width:20%'>{{item.orderName}}</view>
+                      <view class="td" style='width:16%'>{{item.colorName}}</view>
+                      <view class="td" style='width:16%'>{{item.sizeName}}</view>
+                      <view class="td" style='width:16%'>{{item.packageNumber}}</view>
+                      <view class="td" style='width:16%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:16%'>{{item.bedNumber}}</view>
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view style="display: flex;flex-direction: row;justify-content: space-around;padding-top: 30rpx;padding-bottom: 30rpx;">
+                <view>扎数：{{packageCount}}</view>
+                <view>件数：{{layerSum}}</view>
+              </view>
+          </view>
+          <view class='toast-button'>
+              <view class='button1'>
+                  <button catchtap='cancel'>关闭</button>
+              </view>
+          </view>
+      </view>
   </view>
 </view>

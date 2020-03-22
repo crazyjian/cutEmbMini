@@ -51,6 +51,7 @@
                     <view class="th" style='width:12%'>尺码</view>
                     <view class="th" style='width:10%'>扎号</view>
                     <view class="th" style='width:10%'>数量</view>
+                    <view class="th" style='width:10%'>床号</view>
                     <view class="th" style='width:36%'>入库时间</view>
                   </view>
                   <block wx:for="{{detailRecords}}">
@@ -60,6 +61,7 @@
                       <view class="td" style='width:12%'>{{item.sizeName}}</view>
                       <view class="td" style='width:10%'>{{item.packageNumber}}</view>
                       <view class="td" style='width:10%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:10%'>{{item.bedNumber}}</view>
                       <view class="td" style='width:36%' wx:if="{{switchStatus}}">{{item.inStoreTime}}</view>
                       <view class="td" style='width:36%' wx:else>{{item.embInStoreTime}}</view>
                     </view>
@@ -69,6 +71,7 @@
                       <view class="td" style='width:12%'>{{item.sizeName}}</view>
                       <view class="td" style='width:10%'>{{item.packageNumber}}</view>
                       <view class="td" style='width:10%'>{{item.layerCount}}</view>
+                      <view class="td" style='width:10%'>{{item.bedNumber}}</view>
                       <view class="td" style='width:36%' wx:if="{{switchStatus}}">{{item.inStoreTime}}</view>
                       <view class="td" style='width:36%' wx:else>{{item.embInStoreTime}}</view>
                     </view>
