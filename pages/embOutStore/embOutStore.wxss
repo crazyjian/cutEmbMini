@@ -16,7 +16,7 @@ label {
 
 .flex-wrp {
   display: flex;
-  margin-bottom:25px;
+  margin-bottom:25rpx;
 }
 
 .button{
@@ -129,6 +129,7 @@ label {
   border-top: 1px solid darkgray;
   border-right: 1px solid darkgray;
   border-bottom: 1px solid darkgray;
+  width: 1000rpx;
 }
 .tr {
   display: flex;
@@ -184,6 +185,13 @@ text{
 }
 
 .searchItemInput {
-  width:70%;
+  width:50%;
   height:100%;
+  margin-left: 10rpx;
+}
+
+.inputItem {
+  width:100%;
+  background-color:white;
+  padding:10rpx;
 }
