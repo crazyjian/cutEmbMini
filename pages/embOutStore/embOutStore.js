@@ -70,17 +70,16 @@ Page({
         icon: 'none',
         duration: 1000
       })
+    } else if (obj.data.tailorQcode && isOut == 0) {
+      wx.showToast({
+        title: '只需扫描一扎',
+        icon: 'none',
+        duration: 1000
+      })
     }else {
       wx.scanCode({
         onlyFromCamera: true,
         success(res) {
-          if (obj.data.tailorQcode && isOut==0) {
-            wx.showToast({
-              title: '只需扫描一扎',
-              icon: 'none',
-              duration: 1000
-            })
-          }else {
             var tailorQcodeID = res.result;
             obj.setData({
               isShowTailor: false,
@@ -163,9 +162,6 @@ Page({
                   }
                   
                 }else {
-                  obj.setData({
-                    isOut: 1
-                  })
                   wx.showToast({
                     title: "服务器发生异常",
                     image: '../../static/img/error.png',
@@ -174,9 +170,6 @@ Page({
                 }
               },
               fail: function (res) {
-                obj.setData({
-                  isOut: 1
-                })
                 wx.showToast({
                   title: "服务器发生异常",
                   image: '../../static/img/error.png',
@@ -184,7 +177,6 @@ Page({
                 })
               }
             })
-          }
         }
       })
     }
