@@ -77,14 +77,6 @@ Page({
       })
       return false;
     }
-    if(obj.data.isOut == 1) {
-      wx.showToast({
-        title: '存在错误的裁片信息，请重新操作',
-        icon: 'none',
-        duration: 1000
-      })
-      return false;
-    }
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
@@ -110,7 +102,7 @@ Page({
                   tailor.embStoreLocation = res.data.embStoreLocation;
                   var isAdd = true;
                   for (var i = 0; i < tailors.length; i++) {
-                    if (tailors[i].orderName == tailor.orderName && tailors[i].bedNumber == tailor.bedNumber && tailors[i].jarName == tailor.jarName) {
+                    if (tailors[i].orderName == tailor.orderName && tailors[i].bedNumber == tailor.bedNumber && tailors[i].packageNumber == tailor.packageNumber) {
                       isAdd = false;
                       wx.showToast({
                         title: '扫描裁片重复',
@@ -121,18 +113,7 @@ Page({
                     }
                   }
                   if(isAdd) {
-                    tailors.push(tailor);
-                    tailorQcodes.push(tailorQcodeID);
-                    obj.setData({
-                      tailors: tailors,
-                      orderName: tailor.orderName,
-                      tailorQcodes: tailorQcodes,
-                      planCount:'',
-                      actCount:'',
-                      unCount:'',
-                      groupName:''
-                    })
-                    if (tailors.length > 1 && tailors[0].orderName == tailor.orderName && tailors[0].colorName == tailor.colorName && tailors[0].sizeName == tailor.sizeName && tailors[0].embStoreLocation == tailor.embStoreLocation) {
+                    if (tailors.length > 0 && (tailors[0].orderName != tailor.orderName || tailors[0].colorName != tailor.colorName || tailors[0].sizeName != tailor.sizeName || tailors[0].embStoreLocation != tailor.embStoreLocation)) {
                       obj.setData({
                         isOut: 1
                       })
@@ -149,29 +130,36 @@ Page({
                       packageCount += 1;
                       layerSum += res.data.layer;
                       var unPlanNum = res.data.embPlan.planCount - res.data.embPlan.actCount;
+                      var tmpNum = res.data.embPlan.planCount * (res.data.embPlan.driftPercent / 100 + 1) - res.data.embPlan.actCount;
                       var isOut = 0;
-                      if(layerSum>unPlanNum) {
+                      if (layerSum > tmpNum) {
                         isOut=1;
                         wx.showToast({
                           title: '对不起，已经超数，无法出库',
                           icon: 'none',
                           duration: 1000
                         })
+                      }else {
+                        tailors.push(tailor);
+                        tailorQcodes.push(tailorQcodeID);
+                        obj.setData({
+                          tailors: tailors,
+                          orderName: tailor.orderName,
+                          tailorQcodes: tailorQcodes,
+                          packageTotalCount: packageTotalCount,
+                          layerTotalSum: layerTotalSum,
+                          packageCount: packageCount,
+                          layerSum: layerSum,
+                          planCount: res.data.embPlan.planCount,
+                          actCount: res.data.embPlan.actCount,
+                          unCount: unPlanNum,
+                          groupName: res.data.groupName,
+                          isOut: isOut,
+                          unPackageCount: packageTotalCount - packageCount,
+                          unLayerSum: layerTotalSum - layerSum,
+                          embStoreLocation: res.data.embStoreLocation
+                        })
                       }
-                      obj.setData({
-                        packageTotalCount: packageTotalCount,
-                        layerTotalSum: layerTotalSum,
-                        packageCount: packageCount,
-                        layerSum: layerSum,
-                        planCount: res.data.embPlan.planCount,
-                        actCount: res.data.embPlan.actCount,
-                        unCount: unPlanNum,
-                        groupName: res.data.groupName,
-                        isOut: isOut,
-                        unPackageCount: packageTotalCount - packageCount,
-                        unLayerSum: layerTotalSum - layerSum,
-                        embStoreLocation: res.data.embStoreLocation
-                      })
                     } else {
                       obj.setData({
                         isOut: 1
@@ -236,9 +224,6 @@ Page({
         icon: 'none',
         duration: 1000
       })
-      return false;
-    }
-    if (this.data.isOut != 0) {
       return false;
     }
     wx.showModal({
