@@ -5,16 +5,21 @@ Page({
   data: {
     cutStoreQcode:'',
     tailorQcode:'',
-    placeholder:'请扫描货架二维码',
-    isShow:false,
-    isShowTailor:false,
-    scanPic:'../../static/img/success.png'
+    placeholder:'扫描货架二维码',
+    storeFocus: true,
+    storeDisabled: false,
+    tailorFocus:false,
+    tailorDisabled: false,
+    isShow:false
   },
   onLoad: function (option) {
     
   },
   scanStore:function() {
     var obj = this;
+    if (this.data.storeDisabled) {
+      return;
+    }
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
@@ -22,45 +27,88 @@ Page({
           obj.setData({
             cutStoreQcode: "",
             placeholder: "货架二维码不正确",
-            isShow: true,
-            scanPic: '../../static/img/scan_error.png'
+            storeFocus: true,
+            storeDisabled: false
           })
         }else {
           obj.setData({
             cutStoreQcode: res.result,
-            isShow:true,
-            scanPic: '../../static/img/success.png'
+            storeFocus: false,
+            storeDisabled: true,
+            isShow: true,
+            tailorFocus: true,
+            tailorDisabled: false,
           })
         }
       },
       fail(res) {
-        obj.setData({
-          cutStoreQcode: "",
-          placeholder:"扫描有误",
-          isShow: true,
-          scanPic: '../../static/img/scan_error.png'
-        })
+        obj.clearCutStoreQcode();
       }
     })
   },
-  scanTailor:function(){
+  changeCutStoreQcode:function(e) {
     var obj = this;
+    var cutStoreQcode = e.detail.value;
+    if (e.detail.keyCode == 10) {
+      cutStoreQcode = cutStoreQcode.replace('\n', '');
+      obj.setData({
+        cutStoreQcode: cutStoreQcode,
+        storeFocus: false,
+        storeDisabled: true,
+        isShow: true,
+        tailorFocus: true,
+        tailorDisabled: false,
+      })
+    }
+  },
+  clearCutStoreQcode: function () {
+    this.setData({
+      storeDisabled: false,
+      cutStoreQcode: '',
+      storeFocus: true
+    })
+  },
+  scanTailorQcode:function(){
+    var obj = this;
+    if (this.data.tailorQcode) {
+      return;
+    }
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
-        if (obj.data.tailorQcode) {
-          wx.showToast({
-            title: '只需扫描一扎',
-            icon: 'none',
-            duration: 1000
-          })
-        }else {
+        // if (obj.data.tailorQcode) {
+        //   wx.showToast({
+        //     title: '只需扫描一扎',
+        //     icon: 'none',
+        //     duration: 1000
+        //   })
+        // }else {
           obj.setData({
             tailorQcode:res.result,
-            isShowTailor:true
+            tailorFocus:false,
+            tailorDisabled:true
           })
-        }
+        // }
       }
+    })
+  },
+  tailorMoveCursor:function(e) {
+    var obj = this;
+    var tailorQcode = e.detail.value;
+    if (e.detail.keyCode == 10) {
+      tailorQcode = tailorQcode.replace('\n', '');
+      obj.setData({
+        tailorQcode: tailorQcode,
+        tailorFocus: false,
+        tailorDisabled: true
+      })
+    }
+  },
+  clearTailorQcode: function () {
+    this.setData({
+      tailorDisabled: false,
+      tailorQcode: '',
+      tailorFocus: true
     })
   },
   inStore: function (e) {
