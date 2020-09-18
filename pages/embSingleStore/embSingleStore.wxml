@@ -4,19 +4,42 @@
     <view class='searchItem' style="margin-top:20rpx;">
       <text>单号：</text>
       <input class='searchItemInput' name='versionNumber' placeholder='请输入单号' value="{{versionNumber}}" bindinput='getClothesVersionNumber'></input>
-      <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex}}'>
+      <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex1}}'>
+        <view  class="itemview" style="display: flex;background-color:#e2e2e2">
+          <view style="width: 50%;text-align: center;">单号</view>
+          <view style="width: 50%;text-align: center;">款号</view>
+        </view>
         <view wx:for="{{bindSource}}">
-          <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view>
+          <!-- <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view> -->
+          <view bindtap="itemtap" class="itemview" style="display: flex" data-version="{{item.clothesVersionNumber}}" data-order="{{item.orderName}}">
+            <view style="width: 50%;text-align: center;border-right: 0.02px solid #e2e2e2;word-break: break-all;">{{item.clothesVersionNumber}}</view>
+            <view style="width: 50%;text-align: center;word-break: break-all;">{{item.orderName}}</view>
+          </view>
         </view>
       </scroll-view>
     </view>
     <view class='searchItem' style="margin-top:20rpx;">
       <text>款号：</text>
-      <picker bindchange="bindOrderChange" value="{{o_index}}" range="{{orderNames}}">
+      <input class='searchItemInput' name='orderName' placeholder='请输入款号' value="{{orderName}}" bindinput='getOrderName'></input>
+      <scroll-view scroll-y="true" class="scrollview" style='z-index:{{zIndex2}};top:240rpx'>
+        <view  class="itemview" style="display: flex;background-color:#e2e2e2">
+          <view style="width: 50%;text-align: center;">单号</view>
+          <view style="width: 50%;text-align: center;">款号</view>
+        </view>
+        <view wx:for="{{bindSource}}">
+          <!-- <view id="{{item}}" bindtap="itemtap" class="itemview">{{item}}</view> -->
+          <view bindtap="itemtap" class="itemview" style="display: flex" data-version="{{item.clothesVersionNumber}}" data-order="{{item.orderName}}">
+            <view style="width: 50%;text-align: center;border-right: 0.02px solid #e2e2e2;word-break: break-all;">{{item.clothesVersionNumber}}</view>
+            <view style="width: 50%;text-align: center;word-break: break-all;">{{item.orderName}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    <!-- </view> -->
+      <!-- <picker bindchange="bindOrderChange" value="{{o_index}}" range="{{orderNames}}">
           <view class="picker">
             {{orderNames[o_index]}}
           </view>
-        </picker>
+        </picker> -->
     </view>
     <view class="flex-wrp" style="display: flex;flex-direction:row;">
       <div class='inputItem' style="margin-right:20rpx;display:flex;flex-direction:row;">

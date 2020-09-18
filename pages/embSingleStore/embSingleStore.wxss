@@ -99,7 +99,7 @@ label{
 
 .scrollview {
   height: 40%;
-  width:70%;
+  width:75%;
   margin-left:140rpx;
   position: absolute;
   top: 140rpx;
@@ -108,13 +108,15 @@ label{
 
 .itemview {
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* text-overflow: ellipsis; */
+  /* white-space: nowrap; */
   /* width:70%; */
   /* margin-left:140rpx; */
   padding: 10rpx 10rpx 10rpx 10rpx;
-  border-bottom: 1px solid #f1ecec;
-  background-color: #f1ecec;
+  border-bottom: 0.02px solid #e2e2e2;
+  border-left: 0.02px solid #e2e2e2;
+  border-right: 0.02px solid #e2e2e2;
+  background-color: #ffffff;
 }
 
 .toast-box {
