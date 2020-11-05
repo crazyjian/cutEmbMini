@@ -15,7 +15,7 @@
     <block wx:for="{{tailorQcodes}}" wx:key="tailorQcodeID">
       <view style="flex-direction:row;display: flex;width: 100%;align-items: center;margin-bottom: 50rpx;height:62rpx;">
         <view style="width:5%">{{index+1}}</view>
-        <view class='searchItem' style='width:65%'>
+        <view class='searchItem' style='width:70%'>
           <view class='searchItemImg'>
             <image src='../../static/img/scan.png' style='display:inline' mode="aspectFit" bindtap="scanTailorQcode" data-index='{{index}}'></image>
           </view>
